@@ -29,7 +29,7 @@ class ARScenekitViewController: UIViewController, ARSCNViewDelegate, QRViewContr
     var _ParentNodeAnchor : ARObjectAnchor!
     var _DeviceMetrics : String = ""
     var _NewLocationSCNVector3 : SCNVector3!
-    var textNode = SCNNode()    
+    var textNode = SCNNode()
     let configuration = ARWorldTrackingConfiguration()
     var _sDisplayMetrics : String!
     var _sDisplayMessage : String!
@@ -351,8 +351,7 @@ class ARScenekitViewController: UIViewController, ARSCNViewDelegate, QRViewContr
             temperature.setScale(3)
             Circle.addChild(temperature)
             sRetString = GetSplitStringValue(stInput: strParamType)
-        }
-        
+        }        
         return sRetString
     }
     
