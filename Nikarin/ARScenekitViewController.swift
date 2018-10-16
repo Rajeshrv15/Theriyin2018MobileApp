@@ -210,12 +210,12 @@ class ARScenekitViewController: UIViewController, ARSCNViewDelegate, QRViewContr
         
         if (_sDisplayMetrics == "")
         {
-            _sDisplayMetrics = "de1 \(_timerCount),de2 \(_timerCount),de3 \(_timerCount),de4 \(_timerCount)"
+            _sDisplayMetrics = "temperature:\(_timerCount)'c,rpm:\(_timerCount),loudness:\(_timerCount)"
         }
-        if (_sDisplayMessage == "")
+        /*if (_sDisplayMessage == "")
         {
             _sDisplayMessage = "This is a test message"
-        }
+        }*/
     }
     
     //Read device metrics from Server URL
@@ -297,13 +297,15 @@ class ARScenekitViewController: UIViewController, ARSCNViewDelegate, QRViewContr
             Circle.fillColor = UIColor.black
             Circle.yScale=Circle.yScale * -1
             
+            let dispStr = GetParamSpriteNode(strParamType: String(item), Circle: Circle)
+            
             let label = SKLabelNode(fontNamed:"ArialMT")
-            label.text = String(item)
+            label.text = String(dispStr)
             label.position = CGPoint(x: 0, y: 0)
-            label.horizontalAlignmentMode = .center
+            label.horizontalAlignmentMode = .right
             label.verticalAlignmentMode = .center
             label.fontSize =  75
-            label.fontColor = UIColor.red
+            label.fontColor = UIColor.white
             
             
             /*box.addChild(label)
@@ -315,7 +317,7 @@ class ARScenekitViewController: UIViewController, ARSCNViewDelegate, QRViewContr
             //iYPosition = iYPosition + 100
         }
         
-        if _sDisplayMessage != "" {
+        if _sDisplayMessage != nil && _sDisplayMessage != ""{
             let textNode = GetDisplayMessageNode(skScene: skScene)
             skScene.addChild(textNode)
         }
@@ -326,6 +328,39 @@ class ARScenekitViewController: UIViewController, ARSCNViewDelegate, QRViewContr
         lstSCNodesText.append(finalDisplayNode)
         
         return lstSCNodesText
+    }
+    
+    func GetParamSpriteNode(strParamType: String, Circle: SKShapeNode) -> String {
+        var sRetString : String = strParamType
+        if strParamType.range(of: "temperature") != nil {
+            let temperature = SKSpriteNode(imageNamed: "temperature-2-64_white")
+            temperature.position = CGPoint(x: 40, y: 8)
+            temperature.setScale(2)
+            Circle.addChild(temperature)
+            sRetString = GetSplitStringValue(stInput: strParamType)
+        }
+        if strParamType.range(of: "rpm") != nil {
+            let temperature = SKSpriteNode(imageNamed: "speedometer-32")
+            temperature.position = CGPoint(x: 40, y: 8)
+            temperature.setScale(2)
+            Circle.addChild(temperature)
+            sRetString = GetSplitStringValue(stInput: strParamType)
+        }
+        if strParamType.range(of: "loudness") != nil {
+            let temperature = SKSpriteNode(imageNamed: "speaker-32")
+            temperature.position = CGPoint(x: 40, y: 8)
+            temperature.setScale(2)
+            Circle.addChild(temperature)
+            sRetString = GetSplitStringValue(stInput: strParamType)
+        }
+        
+        return sRetString
+    }
+    
+    func GetSplitStringValue(stInput: String) -> String {
+        let splitTextArray = stInput.split(separator: ":")
+        var sRetString : String = String(splitTextArray[1])
+        return sRetString
     }
     
     func GetDisplayMessageNode(skScene : SKScene) -> SKSpriteNode {
