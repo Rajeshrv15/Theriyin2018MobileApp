@@ -12,6 +12,8 @@
 		DE22A0812175AD5500CFBB2A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DE22A07F2175AD5500CFBB2A /* Main.storyboard */; };
 		DE22A0832175AD5900CFBB2A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DE22A0822175AD5900CFBB2A /* Assets.xcassets */; };
 		DE22A0862175AD5900CFBB2A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DE22A0842175AD5900CFBB2A /* LaunchScreen.storyboard */; };
+		DE22A08E2175B5F200CFBB2A /* QRViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE22A08D2175B5F200CFBB2A /* QRViewController.swift */; };
+		DE22A0902175B62400CFBB2A /* ARScenekitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE22A08F2175B62400CFBB2A /* ARScenekitViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +24,8 @@
 		DE22A0822175AD5900CFBB2A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DE22A0852175AD5900CFBB2A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		DE22A0872175AD5900CFBB2A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DE22A08D2175B5F200CFBB2A /* QRViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRViewController.swift; sourceTree = "<group>"; };
+		DE22A08F2175B62400CFBB2A /* ARScenekitViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARScenekitViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +64,8 @@
 				DE22A0822175AD5900CFBB2A /* Assets.xcassets */,
 				DE22A0842175AD5900CFBB2A /* LaunchScreen.storyboard */,
 				DE22A0872175AD5900CFBB2A /* Info.plist */,
+				DE22A08D2175B5F200CFBB2A /* QRViewController.swift */,
+				DE22A08F2175B62400CFBB2A /* ARScenekitViewController.swift */,
 			);
 			path = Nikarin;
 			sourceTree = "<group>";
@@ -136,7 +142,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				DE22A07E2175AD5500CFBB2A /* ViewController.swift in Sources */,
+				DE22A0902175B62400CFBB2A /* ARScenekitViewController.swift in Sources */,
 				DE22A07C2175AD5500CFBB2A /* AppDelegate.swift in Sources */,
+				DE22A08E2175B5F200CFBB2A /* QRViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
