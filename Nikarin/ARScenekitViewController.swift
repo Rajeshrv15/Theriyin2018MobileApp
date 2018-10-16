@@ -133,6 +133,7 @@ class ARScenekitViewController: UIViewController, ARSCNViewDelegate, QRViewContr
     }
     
     func finishPassing(string: String) {
+        //ShowProgressMessage(anuserHUDmessage: "QR reading completed", anTimeInterval: TimeInterval(2))
         _CurrentIoTDeviceToWatch = string
     }
     

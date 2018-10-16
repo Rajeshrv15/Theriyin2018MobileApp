@@ -4,9 +4,7 @@
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -61,22 +59,29 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MWK-Zw-9p2">
-                                <rect key="frame" x="355" y="100" width="124" height="30"/>
+                                <rect key="frame" x="440" y="100" width="39" height="195"/>
                                 <state key="normal" title="Close"/>
                                 <connections>
                                     <action selector="OnQRViewClose:" destination="vdI-o2-03j" eventType="touchUpInside" id="0ro-pe-eed"/>
                                 </connections>
                             </button>
-                            <view contentMode="bottom" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0ZL-cU-UlN" customClass="QRView">
-                                <rect key="frame" x="117" y="137" width="600" height="858"/>
-                                <autoresizingMask key="autoresizingMask"/>
+                            <view contentMode="bottom" translatesAutoresizingMaskIntoConstraints="NO" id="0ZL-cU-UlN" customClass="QRView">
+                                <rect key="frame" x="117" y="365" width="517" height="630"/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="630" id="7ah-jh-f5e"/>
+                                    <constraint firstAttribute="width" constant="200" id="Zd3-YE-Pw8"/>
+                                </constraints>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="0ZL-cU-UlN" firstAttribute="top" secondItem="MWK-Zw-9p2" secondAttribute="bottom" constant="70" id="6vB-oh-z2B"/>
+                            <constraint firstItem="Zvs-K4-YhA" firstAttribute="bottom" secondItem="0ZL-cU-UlN" secondAttribute="bottom" constant="117" id="KqS-AE-XzN"/>
                             <constraint firstItem="MWK-Zw-9p2" firstAttribute="top" secondItem="Zvs-K4-YhA" secondAttribute="top" constant="50" id="QPw-dL-krh"/>
                             <constraint firstItem="MWK-Zw-9p2" firstAttribute="leading" secondItem="cRl-q5-cCW" secondAttribute="leadingMargin" constant="334.88" id="WoP-J7-oDa"/>
+                            <constraint firstItem="Zvs-K4-YhA" firstAttribute="trailing" secondItem="0ZL-cU-UlN" secondAttribute="trailing" constant="200" id="gGh-oo-iBE"/>
+                            <constraint firstItem="0ZL-cU-UlN" firstAttribute="leading" secondItem="Zvs-K4-YhA" secondAttribute="leading" constant="117" id="qfN-Mh-8It"/>
                             <constraint firstItem="MWK-Zw-9p2" firstAttribute="top" secondItem="Zvs-K4-YhA" secondAttribute="top" constant="80" id="tNa-jN-jAc"/>
                             <constraint firstItem="Zvs-K4-YhA" firstAttribute="trailing" secondItem="MWK-Zw-9p2" secondAttribute="trailing" constant="355.12" id="vj2-Jx-Vsl"/>
                         </constraints>
