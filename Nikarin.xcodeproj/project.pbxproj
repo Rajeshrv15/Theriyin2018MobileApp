@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3EB7FB9356D17F9A2804B8B5 /* Pods_Nikarin.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F1178FD44B4A3A7E7468781 /* Pods_Nikarin.framework */; };
 		DE22A07C2175AD5500CFBB2A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE22A07B2175AD5500CFBB2A /* AppDelegate.swift */; };
 		DE22A07E2175AD5500CFBB2A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE22A07D2175AD5500CFBB2A /* ViewController.swift */; };
 		DE22A0812175AD5500CFBB2A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DE22A07F2175AD5500CFBB2A /* Main.storyboard */; };
@@ -17,6 +18,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2366B3F036303234ECFC8B7B /* Pods-Nikarin.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Nikarin.release.xcconfig"; path = "Pods/Target Support Files/Pods-Nikarin/Pods-Nikarin.release.xcconfig"; sourceTree = "<group>"; };
+		2F1178FD44B4A3A7E7468781 /* Pods_Nikarin.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Nikarin.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		BEEE285D36409DD21BD9D34A /* Pods-Nikarin.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Nikarin.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Nikarin/Pods-Nikarin.debug.xcconfig"; sourceTree = "<group>"; };
 		DE22A0782175AD5500CFBB2A /* Nikarin.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Nikarin.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DE22A07B2175AD5500CFBB2A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DE22A07D2175AD5500CFBB2A /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -33,17 +37,29 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3EB7FB9356D17F9A2804B8B5 /* Pods_Nikarin.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		88839E3C7DF5598ABEFE5B6C /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				BEEE285D36409DD21BD9D34A /* Pods-Nikarin.debug.xcconfig */,
+				2366B3F036303234ECFC8B7B /* Pods-Nikarin.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		DE22A06F2175AD5500CFBB2A = {
 			isa = PBXGroup;
 			children = (
 				DE22A07A2175AD5500CFBB2A /* Nikarin */,
 				DE22A0792175AD5500CFBB2A /* Products */,
+				88839E3C7DF5598ABEFE5B6C /* Pods */,
+				F5BAEBB34984BB3CCA97ED08 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -70,6 +86,14 @@
 			path = Nikarin;
 			sourceTree = "<group>";
 		};
+		F5BAEBB34984BB3CCA97ED08 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				2F1178FD44B4A3A7E7468781 /* Pods_Nikarin.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -77,9 +101,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = DE22A08A2175AD5900CFBB2A /* Build configuration list for PBXNativeTarget "Nikarin" */;
 			buildPhases = (
+				CFC342F1347B5AFACAFD6335 /* [CP] Check Pods Manifest.lock */,
 				DE22A0742175AD5500CFBB2A /* Sources */,
 				DE22A0752175AD5500CFBB2A /* Frameworks */,
 				DE22A0762175AD5500CFBB2A /* Resources */,
+				CB2B91A8CC2B304C2BCC154C /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -135,6 +161,45 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		CB2B91A8CC2B304C2BCC154C /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-Nikarin/Pods-Nikarin-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/MBProgressHUD/MBProgressHUD.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MBProgressHUD.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Nikarin/Pods-Nikarin-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		CFC342F1347B5AFACAFD6335 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Nikarin-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		DE22A0742175AD5500CFBB2A /* Sources */ = {
@@ -288,6 +353,7 @@
 		};
 		DE22A08B2175AD5900CFBB2A /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = BEEE285D36409DD21BD9D34A /* Pods-Nikarin.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -306,6 +372,7 @@
 		};
 		DE22A08C2175AD5900CFBB2A /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2366B3F036303234ECFC8B7B /* Pods-Nikarin.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
