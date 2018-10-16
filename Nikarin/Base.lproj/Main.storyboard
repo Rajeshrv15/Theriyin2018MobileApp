@@ -4,7 +4,9 @@
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -73,6 +75,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="MWK-Zw-9p2" firstAttribute="top" secondItem="Zvs-K4-YhA" secondAttribute="top" constant="50" id="QPw-dL-krh"/>
                             <constraint firstItem="MWK-Zw-9p2" firstAttribute="leading" secondItem="cRl-q5-cCW" secondAttribute="leadingMargin" constant="334.88" id="WoP-J7-oDa"/>
                             <constraint firstItem="MWK-Zw-9p2" firstAttribute="top" secondItem="Zvs-K4-YhA" secondAttribute="top" constant="80" id="tNa-jN-jAc"/>
                             <constraint firstItem="Zvs-K4-YhA" firstAttribute="trailing" secondItem="MWK-Zw-9p2" secondAttribute="trailing" constant="355.12" id="vj2-Jx-Vsl"/>
