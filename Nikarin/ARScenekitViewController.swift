@@ -366,8 +366,8 @@ class ARScenekitViewController: UIViewController, ARSCNViewDelegate, QRViewContr
     }
     
     func GetDisplayMessageNode(skScene : SKScene) -> SKSpriteNode {
-        let iYPosition = 400
-        let box = SKSpriteNode(color: UIColor.yellow, size: CGSize(width: 1900, height: 450))
+        let iYPosition = 250
+        let box = SKSpriteNode(color: UIColor.clear, size: CGSize(width: 1900, height: 450))
         //to show in row
         
         //box.position = CGPoint(x: skScene.frame.minX + CGFloat(355) , y: skScene.frame.minY + (box.size.height/2) + CGFloat(iYPosition))
@@ -380,17 +380,26 @@ class ARScenekitViewController: UIViewController, ARSCNViewDelegate, QRViewContr
         
         let label = SKLabelNode(fontNamed:"ArialMT")
         label.text = String(_sDisplayMessage)
-        label.position = CGPoint(x: box.position.x + CGFloat(720), y: 1)
+        label.position = CGPoint(x: box.position.x + CGFloat(850), y: -72)
         label.numberOfLines = 2
         label.preferredMaxLayoutWidth = 1500
         //label.horizontalAlignmentMode = .left
         //label.verticalAlignmentMode = .center
-        label.fontSize =  70
+        label.fontSize =  80
         label.fontColor = UIColor.black
+        
+        let f0 = SKTexture.init(imageNamed: "alert-64")
+        let f1 = SKTexture.init(imageNamed: "alert-blank")
+        let f2 = SKTexture.init(imageNamed: "alert-64")
+        let frames: [SKTexture] = [f0, f1, f2]
         
         let alertIcon = SKSpriteNode(imageNamed: "alert-64")
         alertIcon.position = CGPoint(x: -box.position.x + CGFloat(72) , y:0)
         alertIcon.setScale(2)
+        
+        // Change the frame per 0.2 sec
+        let animation = SKAction.animate(with: frames, timePerFrame: 0.2)
+        alertIcon.run(SKAction.repeatForever(animation))
         
         box.addChild(alertIcon)
         box.addChild(label)
