@@ -211,10 +211,10 @@ class ARScenekitViewController: UIViewController, ARSCNViewDelegate, QRViewContr
         {
             _sDisplayMetrics = "temperature:\(_timerCount)'C,rpm:\(3429 + _timerCount),loudness:\(0.88 + Double(_timerCount))"
         }
-        /*if (_sDisplayMessage == "")
+        if (_sDisplayMessage == "")
         {
-            _sDisplayMessage = "This is a test message"
-        }*/
+            _sDisplayMessage = "Temperature execeeded the threshold."// coming from Nikarin platform based on the scanned device"
+        }
     }
     
     //Read device metrics from Server URL
@@ -248,6 +248,10 @@ class ARScenekitViewController: UIViewController, ARSCNViewDelegate, QRViewContr
         if _ParentNodeForTextNode == nil {
             return
         }
+        if _sDisplayMetrics == nil {
+            return
+        }
+        
         if _ParentNodeForTextNode != nil && _ParentNodeForTextNode.childNodes.count > 0 {
             _ParentNodeForTextNode.childNodes .forEach { item in
                 item.removeFromParentNode()
@@ -363,10 +367,11 @@ class ARScenekitViewController: UIViewController, ARSCNViewDelegate, QRViewContr
     
     func GetDisplayMessageNode(skScene : SKScene) -> SKSpriteNode {
         let iYPosition = 400
-        let box = SKSpriteNode(color: UIColor.black, size: CGSize(width: 900, height: 100))
+        let box = SKSpriteNode(color: UIColor.yellow, size: CGSize(width: 1900, height: 450))
         //to show in row
         
-        box.position = CGPoint(x: skScene.frame.minX + CGFloat(350) , y: skScene.frame.minY + (box.size.height/2) + CGFloat(iYPosition))
+        //box.position = CGPoint(x: skScene.frame.minX + CGFloat(355) , y: skScene.frame.minY + (box.size.height/2) + CGFloat(iYPosition))
+        box.position = CGPoint(x: 0 , y: skScene.frame.minY + (box.size.height/2) + CGFloat(iYPosition))
         //to show in column
         //box.position = CGPoint(x: CGFloat(iXPosition), y: skScene.frame.minY + (box.size.height/2))
         //box.position = CGPoint(x: CGFloat(iXPosition), y: skScene.frame.minY + CGFloat(25))
@@ -375,12 +380,19 @@ class ARScenekitViewController: UIViewController, ARSCNViewDelegate, QRViewContr
         
         let label = SKLabelNode(fontNamed:"ArialMT")
         label.text = String(_sDisplayMessage)
-        label.position = CGPoint(x: 0, y: 0)
-        label.horizontalAlignmentMode = .center
-        label.verticalAlignmentMode = .center
-        label.fontSize =  50
-        label.fontColor = UIColor.blue
+        label.position = CGPoint(x: box.position.x + CGFloat(720), y: 1)
+        label.numberOfLines = 2
+        label.preferredMaxLayoutWidth = 1500
+        //label.horizontalAlignmentMode = .left
+        //label.verticalAlignmentMode = .center
+        label.fontSize =  70
+        label.fontColor = UIColor.black
         
+        let alertIcon = SKSpriteNode(imageNamed: "alert-64")
+        alertIcon.position = CGPoint(x: -box.position.x + CGFloat(72) , y:0)
+        alertIcon.setScale(2)
+        
+        box.addChild(alertIcon)
         box.addChild(label)
         
         return box

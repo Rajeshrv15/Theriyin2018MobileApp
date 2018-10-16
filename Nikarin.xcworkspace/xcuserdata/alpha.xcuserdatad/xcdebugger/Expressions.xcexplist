@@ -3,6 +3,14 @@
    version = "1.0">
    <ContextStates>
       <ContextState
+         contextName = "ARScenekitViewController.UpdateTextNode():ARScenekitViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "_sDisplayMetrics">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "ARScenekitViewController.GetDisplayMessageNode(skScene:):ARScenekitViewController.swift">
          <PersistentStrings>
             <PersistentString
