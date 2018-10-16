@@ -29,10 +29,9 @@ class ARScenekitViewController: UIViewController, ARSCNViewDelegate, QRViewContr
     var _ParentNodeAnchor : ARObjectAnchor!
     var _DeviceMetrics : String = ""
     var _NewLocationSCNVector3 : SCNVector3!
-    var textNode = SCNNode()
-    var txtScnText = SCNText(string: "Initializing...", extrusionDepth: 1)
+    var textNode = SCNNode()    
     let configuration = ARWorldTrackingConfiguration()
-    var _sDisplayMetrics : String = "Initializing..."
+    var _sDisplayMetrics : String!
     var _sDisplayMessage : String!
     
     //timer controller to refresh page
@@ -96,7 +95,7 @@ class ARScenekitViewController: UIViewController, ARSCNViewDelegate, QRViewContr
         if #available(iOS 12.0, *) {
             if anchor is ARObjectAnchor {
                 //print ("Object detected \(node)")
-                ShowProgressMessage(anuserHUDmessage: "Object detected", anTimeInterval: TimeInterval(1))
+                ShowProgressMessage(anuserHUDmessage: "Scanned object detected...", anTimeInterval: TimeInterval(1))
                 _ParentNodeForTextNode = node
                 _ParentNodeAnchor = anchor as? ARObjectAnchor
             }
@@ -210,7 +209,7 @@ class ARScenekitViewController: UIViewController, ARSCNViewDelegate, QRViewContr
         
         if (_sDisplayMetrics == "")
         {
-            _sDisplayMetrics = "temperature:\(_timerCount)'c,rpm:\(_timerCount),loudness:\(_timerCount)"
+            _sDisplayMetrics = "temperature:\(_timerCount)'C,rpm:\(3429 + _timerCount),loudness:\(0.88 + Double(_timerCount))"
         }
         /*if (_sDisplayMessage == "")
         {
@@ -280,7 +279,7 @@ class ARScenekitViewController: UIViewController, ARSCNViewDelegate, QRViewContr
         
         var iXPosition = CGFloat(5)
         
-        let skScene = SKScene(size:CGSize(width: 1600, height: 600))
+        let skScene = SKScene(size:CGSize(width: 1600, height: 800))
         skScene.scaleMode = .aspectFit
         skScene.shouldEnableEffects = true
         skScene.backgroundColor = UIColor.clear
@@ -301,10 +300,10 @@ class ARScenekitViewController: UIViewController, ARSCNViewDelegate, QRViewContr
             
             let label = SKLabelNode(fontNamed:"ArialMT")
             label.text = String(dispStr)
-            label.position = CGPoint(x: 0, y: 0)
+            label.position = CGPoint(x: 18, y: 0)
             label.horizontalAlignmentMode = .right
             label.verticalAlignmentMode = .center
-            label.fontSize =  75
+            label.fontSize =  72
             label.fontColor = UIColor.white
             
             
@@ -334,22 +333,22 @@ class ARScenekitViewController: UIViewController, ARSCNViewDelegate, QRViewContr
         var sRetString : String = strParamType
         if strParamType.range(of: "temperature") != nil {
             let temperature = SKSpriteNode(imageNamed: "temperature-2-64_white")
-            temperature.position = CGPoint(x: 40, y: 8)
+            temperature.position = CGPoint(x: 90, y: 8)
             temperature.setScale(2)
             Circle.addChild(temperature)
             sRetString = GetSplitStringValue(stInput: strParamType)
         }
         if strParamType.range(of: "rpm") != nil {
             let temperature = SKSpriteNode(imageNamed: "speedometer-32")
-            temperature.position = CGPoint(x: 40, y: 8)
-            temperature.setScale(2)
+            temperature.position = CGPoint(x: 90, y: 8)
+            temperature.setScale(3.5)
             Circle.addChild(temperature)
             sRetString = GetSplitStringValue(stInput: strParamType)
         }
         if strParamType.range(of: "loudness") != nil {
             let temperature = SKSpriteNode(imageNamed: "speaker-32")
-            temperature.position = CGPoint(x: 40, y: 8)
-            temperature.setScale(2)
+            temperature.position = CGPoint(x: 90, y: 8)
+            temperature.setScale(3)
             Circle.addChild(temperature)
             sRetString = GetSplitStringValue(stInput: strParamType)
         }
@@ -359,7 +358,7 @@ class ARScenekitViewController: UIViewController, ARSCNViewDelegate, QRViewContr
     
     func GetSplitStringValue(stInput: String) -> String {
         let splitTextArray = stInput.split(separator: ":")
-        var sRetString : String = String(splitTextArray[1])
+        let sRetString : String = String(splitTextArray[1])
         return sRetString
     }
     
@@ -391,7 +390,7 @@ class ARScenekitViewController: UIViewController, ARSCNViewDelegate, QRViewContr
     func ShowProgressMessage(anuserHUDmessage: String, anTimeInterval: TimeInterval) {
         DispatchQueue.main.async {
             self._oUserHUD = MBProgressHUD.showAdded(to: self.view, animated: true)
-            self._oUserHUD.label.text = "This is your " + anuserHUDmessage
+            self._oUserHUD.label.text = anuserHUDmessage
             self._oUserHUD.hide(animated: true, afterDelay: anTimeInterval)
         }
     }
