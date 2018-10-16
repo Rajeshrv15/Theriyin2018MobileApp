@@ -10,6 +10,7 @@ import UIKit
 import ARKit
 import SceneKit
 import Foundation
+import MBProgressHUD
 
 class ARScenekitViewController: UIViewController, ARSCNViewDelegate, QRViewControllerDelegate {
     
@@ -38,6 +39,8 @@ class ARScenekitViewController: UIViewController, ARSCNViewDelegate, QRViewContr
     var _timerCount : Int = 0
     var timerReadFromServer: Timer!
     var timerUpdateTextNode: Timer!
+    
+    var _oUserHUD: MBProgressHUD!
     
     override func viewDidLoad() {
         
@@ -92,7 +95,8 @@ class ARScenekitViewController: UIViewController, ARSCNViewDelegate, QRViewContr
     func renderer(_ renderer: SCNSceneRenderer, didAdd node: SCNNode, for anchor: ARAnchor) {
         if #available(iOS 12.0, *) {
             if anchor is ARObjectAnchor {
-                print ("Object detected \(node)")
+                //print ("Object detected \(node)")
+                ShowProgressMessage(anuserHUDmessage: "Object detected", anTimeInterval: TimeInterval(1))
                 _ParentNodeForTextNode = node
                 _ParentNodeAnchor = anchor as? ARObjectAnchor
             }
@@ -346,6 +350,14 @@ class ARScenekitViewController: UIViewController, ARSCNViewDelegate, QRViewContr
         box.addChild(label)
         
         return box
+    }
+    
+    func ShowProgressMessage(anuserHUDmessage: String, anTimeInterval: TimeInterval) {
+        DispatchQueue.main.async {
+            self._oUserHUD = MBProgressHUD.showAdded(to: self.view, animated: true)
+            self._oUserHUD.label.text = "This is your " + anuserHUDmessage
+            self._oUserHUD.hide(animated: true, afterDelay: anTimeInterval)
+        }
     }
     
 }
