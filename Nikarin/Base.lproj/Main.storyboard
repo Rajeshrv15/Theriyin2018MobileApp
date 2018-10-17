@@ -58,33 +58,26 @@
                         <rect key="frame" x="0.0" y="0.0" width="834" height="1112"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MWK-Zw-9p2">
-                                <rect key="frame" x="440" y="100" width="39" height="195"/>
-                                <state key="normal" title="Close"/>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="MWK-Zw-9p2">
+                                <rect key="frame" x="592" y="53" width="222" height="60"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal">
+                                    <attributedString key="attributedTitle">
+                                        <fragment content="Close View">
+                                            <attributes>
+                                                <color key="NSColor" red="0.016804177310000001" green="0.19835099580000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <font key="NSFont" size="24" name=".AppleSystemUIFont"/>
+                                                <paragraphStyle key="NSParagraphStyle" alignment="justified" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                            </attributes>
+                                        </fragment>
+                                    </attributedString>
+                                </state>
                                 <connections>
                                     <action selector="OnQRViewClose:" destination="vdI-o2-03j" eventType="touchUpInside" id="0ro-pe-eed"/>
                                 </connections>
                             </button>
-                            <view contentMode="bottom" translatesAutoresizingMaskIntoConstraints="NO" id="0ZL-cU-UlN" customClass="QRView">
-                                <rect key="frame" x="117" y="365" width="517" height="630"/>
-                                <color key="backgroundColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="630" id="7ah-jh-f5e"/>
-                                    <constraint firstAttribute="width" constant="200" id="Zd3-YE-Pw8"/>
-                                </constraints>
-                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <constraints>
-                            <constraint firstItem="0ZL-cU-UlN" firstAttribute="top" secondItem="MWK-Zw-9p2" secondAttribute="bottom" constant="70" id="6vB-oh-z2B"/>
-                            <constraint firstItem="Zvs-K4-YhA" firstAttribute="bottom" secondItem="0ZL-cU-UlN" secondAttribute="bottom" constant="117" id="KqS-AE-XzN"/>
-                            <constraint firstItem="MWK-Zw-9p2" firstAttribute="top" secondItem="Zvs-K4-YhA" secondAttribute="top" constant="50" id="QPw-dL-krh"/>
-                            <constraint firstItem="MWK-Zw-9p2" firstAttribute="leading" secondItem="cRl-q5-cCW" secondAttribute="leadingMargin" constant="334.88" id="WoP-J7-oDa"/>
-                            <constraint firstItem="Zvs-K4-YhA" firstAttribute="trailing" secondItem="0ZL-cU-UlN" secondAttribute="trailing" constant="200" id="gGh-oo-iBE"/>
-                            <constraint firstItem="0ZL-cU-UlN" firstAttribute="leading" secondItem="Zvs-K4-YhA" secondAttribute="leading" constant="117" id="qfN-Mh-8It"/>
-                            <constraint firstItem="MWK-Zw-9p2" firstAttribute="top" secondItem="Zvs-K4-YhA" secondAttribute="top" constant="80" id="tNa-jN-jAc"/>
-                            <constraint firstItem="Zvs-K4-YhA" firstAttribute="trailing" secondItem="MWK-Zw-9p2" secondAttribute="trailing" constant="355.12" id="vj2-Jx-Vsl"/>
-                        </constraints>
                         <viewLayoutGuide key="safeArea" id="Zvs-K4-YhA"/>
                     </view>
                 </viewController>
@@ -100,25 +93,30 @@
                         <rect key="frame" x="0.0" y="0.0" width="834" height="1112"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <arscnView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Cdy-rt-F6v">
+                            <arscnView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Cdy-rt-F6v">
                                 <rect key="frame" x="0.0" y="120" width="834" height="992"/>
-                            </arscnView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lXM-YP-jYH">
-                                <rect key="frame" x="379" y="49" width="76" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Close View"/>
+                            </arscnView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="lXM-YP-jYH">
+                                <rect key="frame" x="592" y="53" width="222" height="60"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal">
+                                    <attributedString key="attributedTitle">
+                                        <fragment content="Close View">
+                                            <attributes>
+                                                <color key="NSColor" red="0.016804177310000001" green="0.19835099580000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <font key="NSFont" size="24" name=".AppleSystemUIFont"/>
+                                                <paragraphStyle key="NSParagraphStyle" alignment="justified" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                            </attributes>
+                                        </fragment>
+                                    </attributedString>
+                                </state>
                                 <connections>
                                     <action selector="OnCloseClick:" destination="YI7-97-lOI" eventType="touchUpInside" id="hGF-47-IkH"/>
                                 </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <constraints>
-                            <constraint firstItem="Cdy-rt-F6v" firstAttribute="trailing" secondItem="nhB-Vr-EJA" secondAttribute="trailing" id="1jM-v4-Fwf"/>
-                            <constraint firstItem="Cdy-rt-F6v" firstAttribute="bottom" secondItem="nhB-Vr-EJA" secondAttribute="bottom" id="Emv-m1-pC6"/>
-                            <constraint firstItem="Cdy-rt-F6v" firstAttribute="leading" secondItem="nhB-Vr-EJA" secondAttribute="leading" id="Ffj-n3-cNy"/>
-                            <constraint firstItem="Cdy-rt-F6v" firstAttribute="top" secondItem="nhB-Vr-EJA" secondAttribute="top" constant="100" id="J5f-Io-RvE"/>
-                        </constraints>
                         <viewLayoutGuide key="safeArea" id="nhB-Vr-EJA"/>
                     </view>
                     <connections>
@@ -127,7 +125,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ea6-oh-R8z" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="956" y="-117"/>
+            <point key="canvasLocation" x="955.39568345323744" y="-117.08633093525181"/>
         </scene>
     </scenes>
 </document>
