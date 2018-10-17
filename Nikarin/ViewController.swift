@@ -14,7 +14,14 @@ class ViewController: UIViewController, QRViewControllerDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        UIGraphicsBeginImageContext(self.view.frame.size)
+        UIImage(named: "TileBackground")?.draw(in: self.view.bounds)
+        let image: UIImage = UIGraphicsGetImageFromCurrentImageContext()!
+        UIGraphicsEndImageContext()
+        self.view.backgroundColor = UIColor(patternImage: image)
         // Do any additional setup after loading the view, typically from a nib.
+        //self.view.backgroundColor = UIColor(patternImage: UIImage(named: "FotoliaBackground")!)
     }
     
     override func didReceiveMemoryWarning() {
