@@ -58,7 +58,7 @@ class ARScenekitViewController: UIViewController, ARSCNViewDelegate, QRViewContr
         anSceneView.scene = scene
         
         //self.anSceneView.debugOptions = [ARSCNDebugOptions.showFeaturePoints, ARSCNDebugOptions.showWorldOrigin]
-        self.anSceneView.showsStatistics = true
+        self.anSceneView.showsStatistics = false
         //self.anSceneView.session.run(configuration)
         self.anSceneView.delegate = self
         
