@@ -30,18 +30,22 @@ class ViewController: UIViewController, QRViewControllerDelegate {
     }
     
     @IBAction func onReadDeviceData(_ sender: UIButton) {
-        performSegue(withIdentifier: "AnjShowDeviceData", sender: self)
+        performSegue(withIdentifier: "AnShowDeviceData", sender: self)
+    }
+        
+    @IBAction func onLoadQRReader(_ sender: UIButton) {
+        performSegue(withIdentifier: "AnShowQRReader", sender: self)
     }
     
-    
-    @IBAction func onLoadQRReader(_ sender: UIButton) {
-        performSegue(withIdentifier: "AnjShowQRReader", sender: self)
+    @IBAction func onLoadDigitalTwin(_ sender: UIButton) {
+        performSegue(withIdentifier: "AnShowDigitalTwin", sender: self)
     }
     
     func finishPassing(string: String) {
         self._anQRString = string
         //print("Received from QR Reader : " + self._anQRString)
     }
+    
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let destination = segue.destination as? QRViewController {

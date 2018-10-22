@@ -74,18 +74,78 @@
                                     <action selector="onReadDeviceData:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Ns8-tX-OrA"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4dA-by-Wf5">
+                                <rect key="frame" x="309" y="531" width="314" height="58"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" image="GotoArrow-28-64">
+                                    <attributedString key="attributedTitle">
+                                        <fragment content="     Load Digital Twin">
+                                            <attributes>
+                                                <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <font key="NSFont" size="24" name="ArialNarrow-Bold"/>
+                                                <paragraphStyle key="NSParagraphStyle" alignment="justified" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                            </attributes>
+                                        </fragment>
+                                    </attributedString>
+                                </state>
+                                <connections>
+                                    <action selector="onLoadDigitalTwin:" destination="BYZ-38-t0r" eventType="touchUpInside" id="QV3-nm-dtY"/>
+                                    <action selector="onReadDeviceData:" destination="BYZ-38-t0r" eventType="touchUpInside" id="8KW-ej-wfv"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" cocoaTouchSystemColor="lightTextColor"/>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
-                        <segue destination="YI7-97-lOI" kind="show" identifier="AnjShowDeviceData" id="dY4-TR-ouG"/>
-                        <segue destination="vdI-o2-03j" kind="show" identifier="AnjShowQRReader" id="764-It-XJj"/>
+                        <segue destination="YI7-97-lOI" kind="show" identifier="AnShowDeviceData" id="dY4-TR-ouG"/>
+                        <segue destination="vdI-o2-03j" kind="show" identifier="AnShowQRReader" id="764-It-XJj"/>
+                        <segue destination="tE1-Ru-whY" kind="show" identifier="AnShowDigitalTwin" id="f1n-Ss-otV"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="117.26618705035972" y="117.08633093525181"/>
+        </scene>
+        <!--View Controller Twin Load-->
+        <scene sceneID="W5t-Uo-IHL">
+            <objects>
+                <viewController id="tE1-Ru-whY" customClass="ViewControllerTwinLoad" customModule="Nikarin" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="dCv-Gp-5Nh">
+                        <rect key="frame" x="0.0" y="0.0" width="834" height="1112"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <arscnView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nJj-oS-0iW">
+                                <rect key="frame" x="0.0" y="0.0" width="834" height="1112"/>
+                            </arscnView>
+                            <button opaque="NO" contentMode="scaleAspectFit" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="McB-i9-czH">
+                                <rect key="frame" x="780" y="50" width="27" height="27"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" image="Black-x-mark-64">
+                                    <attributedString key="attributedTitle"/>
+                                </state>
+                                <connections>
+                                    <action selector="CloseView:" destination="tE1-Ru-whY" eventType="touchUpInside" id="cJY-dL-T6G"/>
+                                    <action selector="OnCloseClick:" destination="YI7-97-lOI" eventType="touchUpInside" id="9ev-d3-9qa"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="nJj-oS-0iW" firstAttribute="top" secondItem="dCv-Gp-5Nh" secondAttribute="top" id="Wue-78-ftu"/>
+                            <constraint firstItem="nJj-oS-0iW" firstAttribute="leading" secondItem="N05-in-8uO" secondAttribute="leading" id="eRY-4B-h11"/>
+                            <constraint firstItem="nJj-oS-0iW" firstAttribute="bottom" secondItem="N05-in-8uO" secondAttribute="bottom" id="sno-de-cW8"/>
+                            <constraint firstItem="nJj-oS-0iW" firstAttribute="trailing" secondItem="N05-in-8uO" secondAttribute="trailing" id="swK-Lq-b8j"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="N05-in-8uO"/>
+                    </view>
+                    <connections>
+                        <outlet property="scnDigitalTwin" destination="nJj-oS-0iW" id="dHl-ah-sUX"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Q3o-rR-uC9" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="444.60431654676262" y="1236.6906474820144"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="Srv-KZ-0ic">
