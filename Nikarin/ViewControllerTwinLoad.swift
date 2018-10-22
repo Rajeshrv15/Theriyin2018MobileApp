@@ -85,6 +85,7 @@ class ViewControllerTwinLoad: UIViewController, ARSCNViewDelegate {
         let y = CGFloat(planeAnchor.center.y)
         let z = CGFloat(planeAnchor.center.z)
         planeNode.position = SCNVector3(x,0,z)
+        planeNode.opacity = 0.15
         planeNode.eulerAngles.x = -.pi / 2
         
         node.addChildNode(planeNode)
