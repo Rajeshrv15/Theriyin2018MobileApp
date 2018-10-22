@@ -12,7 +12,7 @@ import SceneKit
 import Foundation
 import MBProgressHUD
 
-class ARScenekitViewController: UIViewController, ARSCNViewDelegate, QRViewControllerDelegate {
+class ARScenekitViewController: UIViewController, ARSCNViewDelegate {
     
     
     @IBOutlet weak var anSceneView: ARSCNView!
@@ -86,14 +86,14 @@ class ARScenekitViewController: UIViewController, ARSCNViewDelegate, QRViewContr
     }
     
     @IBAction func TriggerPrediction(_ sender: UIButton) {
-        let sZemantisURL : String = "http://10.60.5.238:9083/adapars/apply/drill_pmml"//?record={\"RPM\": 2350,\"Temperature\": 52,\"Sound\": 3.2}"
+        let sZemantisURL : String = "http://10.60.5.238:9083/adapars/apply/drill_pmml?record={\"RPM\": 2350,\"Temperature\": 52,\"Sound\": 3.2}"
         let strZemantisResDict = GetDeviceMetricsFromServer(anAccessURL: sZemantisURL, anUserName: "Administrator", anPassword: "manage")
         let sUIVal = ReadValueFromDictionaryWithKey(dtInput: strZemantisResDict, stKey: "predicted_Maintenance")
-        ShowProgressMessage(anuserHUDmessage: sUIVal, anTimeInterval: TimeInterval(2))
+        ShowProgressMessage(anuserHUDmessage: "As per prediction maintenance required", anTimeInterval: TimeInterval(2))
     }
     
     @IBAction func TriggerBPMN(_ sender: UIButton) {
-        let sBPMSURL : String = "http://10.60.5.238:5555/invoke/Service/CallRepairBPMS?DeviceID=2323456&DeviceName=Drill&Email=vchi@softwareag.com&EmailBody=Send Technician for the service"
+        let sBPMSURL : String = "http://10.60.5.238:5555/invoke/Service/CallRepairBPMS?DeviceID=2323456&DeviceName=Drill&Email=rrad@softwareag.com&EmailBody=Send Technician for the service"
         _ = GetDeviceMetricsFromServer(anAccessURL: sBPMSURL, anUserName: "Administrator", anPassword: "manage")
         //let sUIVal = ReadValueFromDictionaryWithKey(dtInput: strBPMSResDict, stKey: "predicted_Maintenance")
         ShowProgressMessage(anuserHUDmessage: "BPMS triggered", anTimeInterval: TimeInterval(2))
@@ -145,14 +145,17 @@ class ARScenekitViewController: UIViewController, ARSCNViewDelegate, QRViewContr
         dismiss(animated: true, completion: nil)
     }
     
-    func finishPassing(string: String) {
+    /*func finishPassing(string: String) {
         //ShowProgressMessage(anuserHUDmessage: "QR reading completed", anTimeInterval: TimeInterval(2))
         _CurrentIoTDeviceToWatch = string
-    }
+        print("finish Passing called !")
+        
+    }*/
     
     //To read the connectivity details from QR code response
     func ReadConnectionDetails() {
         var dictionary:NSDictionary?
+        print(_CurrentIoTDeviceToWatch)
         if let data = _CurrentIoTDeviceToWatch.data(using: String.Encoding.utf8) {
             do {
                 dictionary = try JSONSerialization.jsonObject(with: data, options: []) as? [String:AnyObject] as NSDictionary?
@@ -187,11 +190,11 @@ class ARScenekitViewController: UIViewController, ARSCNViewDelegate, QRViewContr
          print(" UserName : \(oUsrName)")
          print(" Password : \(oPass)")
          print(" Previous Response : \(self._DeviceMetrics)")*/
-        _DeviceMetrics = GetDeviceMetricsFromServer(anAccessURL: oDevDataUrl, anUserName: oUsrName, anPassword: oPass)
+        GetDeviceMetricsFromServerAsyc(anAccessURL: oDevDataUrl, anUserName: oUsrName, anPassword: oPass)
         
         if _DeviceMetrics.isEmpty {
-            //print("Value yet to assign")
-            //return
+            print("Value yet to assign")
+            return
         }
         var dictionary:NSDictionary?
         _sDisplayMetrics = ""
@@ -223,18 +226,55 @@ class ARScenekitViewController: UIViewController, ARSCNViewDelegate, QRViewContr
         
         if (_sDisplayMetrics == "")
         {
-            _sDisplayMetrics = "temperature:\(_timerCount)'C,rpm:\(3429 + _timerCount),loudness:\(0.88 + Double(_timerCount))"
+            _sDisplayMetrics = "Temperature:\(_timerCount)'C,Speed:\(3429 + _timerCount),Sound:\(0.88 + Double(_timerCount))"
         }
-        if (_sDisplayMessage == "")
+        /*if (_sDisplayMessage == "")
         {
             _sDisplayMessage = "Temperature execeeded the threshold."// coming from Nikarin platform based on the scanned device"
+        }*/
+    }
+    
+    //Read device metrics from Server URL
+    func GetDeviceMetricsFromServerAsyc(anAccessURL : String, anUserName: String, anPassword: String ) {
+        let config = URLSessionConfiguration.default
+        //let anSem = DispatchSemaphore.init(value: 0)
+        
+        if (anAccessURL == nil || anAccessURL.isEmpty) {
+            return
         }
+        
+        if (!anUserName.isEmpty && !anPassword.isEmpty) {
+            let userPasswordData = "\(anUserName):\(anPassword)".data(using: .utf8)
+            let base64EncodedCredential = userPasswordData!.base64EncodedString(options: Data.Base64EncodingOptions.init(rawValue: 0))
+            let authString = "Basic \(base64EncodedCredential)"
+            config.httpAdditionalHeaders = ["Authorization" : authString]
+        }
+        
+        //print("URL : " + anAccessURL)
+        let session = URLSession(configuration: config)
+        
+        let anUrl = URL(string: anAccessURL.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!)!
+        let anUrlRequest : URLRequest = URLRequest(url: anUrl)
+        var anResponse : String = ""
+        session.dataTask(with: anUrlRequest as URLRequest, completionHandler: { (data, response, error) -> Void in
+            guard error == nil else {
+                print(error?.localizedDescription ?? "")
+                return
+            }
+            anResponse = String(data: data!, encoding: .utf8)!
+            self._DeviceMetrics = anResponse
+            //anSem.signal()
+            //self._DeviceMetrics = anResponse
+        }).resume()
+        //anSem.wait(timeout: .distantFuture)
+        //return strResponse
     }
     
     //Read device metrics from Server URL
     func GetDeviceMetricsFromServer(anAccessURL : String, anUserName: String, anPassword: String ) -> String {
         let config = URLSessionConfiguration.default
         var strResponse : String = ""
+        let anSem = DispatchSemaphore.init(value: 0)
         
         if (anAccessURL == nil || anAccessURL.isEmpty) {
             return strResponse
@@ -250,19 +290,21 @@ class ARScenekitViewController: UIViewController, ARSCNViewDelegate, QRViewContr
         //print("URL : " + anAccessURL)
         let session = URLSession(configuration: config)
         
-        let anUrl = URL(string: anAccessURL)!
+        let anUrl = URL(string: anAccessURL.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!)!
         let anUrlRequest : URLRequest = URLRequest(url: anUrl)
         var anResponse : String = ""
-        session.dataTask(with: anUrlRequest as URLRequest, completionHandler: { (data, response, error) -> Void in
+        let anDataTsk = session.dataTask(with: anUrlRequest as URLRequest, completionHandler: { (data, response, error) -> Void in
             guard error == nil else {
                 print(error?.localizedDescription ?? "")
                 return
             }
             anResponse = String(data: data!, encoding: .utf8)!
             strResponse = anResponse
+            anSem.signal()
             //self._DeviceMetrics = anResponse
-        }).resume()
-        
+        })
+        anDataTsk.resume()
+        anSem.wait(timeout: .distantFuture)
         return strResponse
     }
     
@@ -357,21 +399,23 @@ class ARScenekitViewController: UIViewController, ARSCNViewDelegate, QRViewContr
     
     func GetParamSpriteNode(strParamType: String, Circle: SKShapeNode) -> String {
         var sRetString : String = strParamType
-        if strParamType.range(of: "temperature") != nil {
+        if strParamType.range(of: "Temperature") != nil {
             let temperature = SKSpriteNode(imageNamed: "temperature-2-64_white")
             temperature.position = CGPoint(x: 90, y: 8)
             temperature.setScale(2)
             Circle.addChild(temperature)
-            sRetString = GetSplitStringValue(stInput: strParamType)
+            let sTmpRetString = GetSplitStringValue(stInput: strParamType)
+            sRetString = "\(sTmpRetString)'C"
+            print(sRetString)
         }
-        if strParamType.range(of: "rpm") != nil {
+        if strParamType.range(of: "Speed") != nil {
             let temperature = SKSpriteNode(imageNamed: "speedometer-32")
             temperature.position = CGPoint(x: 90, y: 8)
             temperature.setScale(3.5)
             Circle.addChild(temperature)
             sRetString = GetSplitStringValue(stInput: strParamType)
         }
-        if strParamType.range(of: "loudness") != nil {
+        if strParamType.range(of: "Sound") != nil {
             let temperature = SKSpriteNode(imageNamed: "speaker-32")
             temperature.position = CGPoint(x: 90, y: 8)
             temperature.setScale(3)

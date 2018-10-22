@@ -3,6 +3,14 @@
    version = "1.0">
    <ContextStates>
       <ContextState
+         contextName = "ARScenekitViewController.GetDisplayMessageNode(skScene:):ARScenekitViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "_sDisplayMessage">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "ARScenekitViewController.UpdateTextNode():ARScenekitViewController.swift">
          <PersistentStrings>
             <PersistentString
@@ -11,12 +19,15 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "ARScenekitViewController.GetDisplayMessageNode(skScene:):ARScenekitViewController.swift">
+         contextName = "ARScenekitViewController.ReadConnectionDetails():ARScenekitViewController.swift">
          <PersistentStrings>
             <PersistentString
-               value = "_sDisplayMessage">
+               value = "_CurrentIoTDeviceToWatch">
             </PersistentString>
          </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "ARScenekitViewController.GetDeviceMetricsFromServer(anAccessURL:anUserName:anPassword:):ARScenekitViewController.swift">
       </ContextState>
    </ContextStates>
 </VariablesViewState>

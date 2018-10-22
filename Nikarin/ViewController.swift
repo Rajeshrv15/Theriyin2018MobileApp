@@ -51,7 +51,7 @@ class ViewController: UIViewController, QRViewControllerDelegate {
         if let destination = segue.destination as? QRViewController {
             destination.delegate = self
         }
-        if segue.identifier == "AnjShowDeviceData" {
+        if segue.identifier == "AnShowDeviceData" {
             guard let destinationVC = segue.destination as? ARScenekitViewController else {
                 //print("Nee neikiera sender nan illai " + segue.debugDescription)
                 return
