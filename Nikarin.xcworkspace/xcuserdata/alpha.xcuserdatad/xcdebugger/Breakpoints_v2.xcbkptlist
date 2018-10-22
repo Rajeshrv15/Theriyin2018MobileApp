@@ -10,29 +10,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Nikarin/ARScenekitViewController.swift"
-            timestampString = "561904647.484688"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "159"
-            endingLineNumber = "159"
-            landmarkName = "ReadConnectionDetails()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Nikarin/ARScenekitViewController.swift"
-            timestampString = "561904647.485135"
+            timestampString = "561904945.7635731"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "152"
             endingLineNumber = "152"
-            landmarkName = "ARScenekitViewController"
-            landmarkType = "3">
+            landmarkName = "ReadConnectionDetails()"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -42,11 +26,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Nikarin/ARScenekitViewController.swift"
-            timestampString = "561904647.4854259"
+            timestampString = "561904945.764024"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "317"
-            endingLineNumber = "317"
+            startingLineNumber = "311"
+            endingLineNumber = "311"
             landmarkName = "GetDeviceMetricsFromServer(anAccessURL:anUserName:anPassword:bSync:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -58,11 +42,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Nikarin/ARScenekitViewController.swift"
-            timestampString = "561904647.485696"
+            timestampString = "561904945.764295"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "269"
-            endingLineNumber = "269"
+            startingLineNumber = "263"
+            endingLineNumber = "263"
             landmarkName = "GetDeviceMetricsFromServerAsyc(anAccessURL:anUserName:anPassword:)"
             landmarkType = "7">
          </BreakpointContent>

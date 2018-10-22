@@ -147,13 +147,6 @@ class ARScenekitViewController: UIViewController, ARSCNViewDelegate {
         dismiss(animated: true, completion: nil)
     }
     
-    /*func finishPassing(string: String) {
-        //ShowProgressMessage(anuserHUDmessage: "QR reading completed", anTimeInterval: TimeInterval(2))
-        _CurrentIoTDeviceToWatch = string
-        print("finish Passing called !")
-        
-    }*/
-    
     //To read the connectivity details from QR code response
     func ReadConnectionDetails() {
         var dictionary:NSDictionary?
@@ -192,7 +185,8 @@ class ARScenekitViewController: UIViewController, ARSCNViewDelegate {
          print(" UserName : \(oUsrName)")
          print(" Password : \(oPass)")
          print(" Previous Response : \(self._DeviceMetrics)")*/
-        GetDeviceMetricsFromServerAsyc(anAccessURL: oDevDataUrl, anUserName: oUsrName, anPassword: oPass)
+        self._DeviceMetrics = GetDeviceMetricsFromServer(anAccessURL: oDevDataUrl, anUserName: oUsrName, anPassword: oPass, bSync: true)
+        //GetDeviceMetricsFromServerAsyc(anAccessURL: oDevDataUrl, anUserName: oUsrName, anPassword: oPass)
         
         if _DeviceMetrics.isEmpty {
             print("Value yet to assign")
@@ -237,7 +231,7 @@ class ARScenekitViewController: UIViewController, ARSCNViewDelegate {
     }
     
     //Read device metrics from Server URL
-    func GetDeviceMetricsFromServerAsyc(anAccessURL : String, anUserName: String, anPassword: String ) {
+    /*func GetDeviceMetricsFromServerAsyc(anAccessURL : String, anUserName: String, anPassword: String ) {
         let config = URLSessionConfiguration.default
         //let anSem = DispatchSemaphore.init(value: 0)
         
@@ -270,7 +264,7 @@ class ARScenekitViewController: UIViewController, ARSCNViewDelegate {
         }).resume()
         //anSem.wait(timeout: .distantFuture)
         //return strResponse
-    }
+    }*/
     
     //Read device metrics from Server URL
     func GetDeviceMetricsFromServer(anAccessURL : String, anUserName: String, anPassword: String, bSync: Bool) -> String {
