@@ -87,14 +87,16 @@ class ARScenekitViewController: UIViewController, ARSCNViewDelegate {
     
     @IBAction func TriggerPrediction(_ sender: UIButton) {
         let sZemantisURL : String = "http://10.60.5.238:9083/adapars/apply/drill_pmml?record={\"RPM\": 2350,\"Temperature\": 52,\"Sound\": 3.2}"
-        let strZemantisResDict = GetDeviceMetricsFromServer(anAccessURL: sZemantisURL, anUserName: "Administrator", anPassword: "manage")
-        let sUIVal = ReadValueFromDictionaryWithKey(dtInput: strZemantisResDict, stKey: "predicted_Maintenance")
+        let strZemantisResDict = GetDeviceMetricsFromServer(anAccessURL: sZemantisURL, anUserName: "Administrator", anPassword: "manage", bSync: true)
+        print("TriggerPrediction not sure whether i got the value")
+        //let sUIVal = ReadValueFromDictionaryWithKey(dtInput: strZemantisResDict, stKey: "predicted_Maintenance")
         ShowProgressMessage(anuserHUDmessage: "As per prediction maintenance required", anTimeInterval: TimeInterval(2))
     }
     
     @IBAction func TriggerBPMN(_ sender: UIButton) {
         let sBPMSURL : String = "http://10.60.5.238:5555/invoke/Service/CallRepairBPMS?DeviceID=2323456&DeviceName=Drill&Email=rrad@softwareag.com&EmailBody=Send Technician for the service"
-        _ = GetDeviceMetricsFromServer(anAccessURL: sBPMSURL, anUserName: "Administrator", anPassword: "manage")
+        let strBPMSResDict = GetDeviceMetricsFromServer(anAccessURL: sBPMSURL, anUserName: "Administrator", anPassword: "manage", bSync: true)
+        print("TriggerBPMN not sure whether i got the value")
         //let sUIVal = ReadValueFromDictionaryWithKey(dtInput: strBPMSResDict, stKey: "predicted_Maintenance")
         ShowProgressMessage(anuserHUDmessage: "BPMS triggered", anTimeInterval: TimeInterval(2))
     }
@@ -184,7 +186,7 @@ class ARScenekitViewController: UIViewController, ARSCNViewDelegate {
     //To read device metrics
     @objc func ReadDisplayValueFromServer() {
         _timerCount = _timerCount + 1
-        print("Current timer count  \(_timerCount)")
+        //print("Current timer count  \(_timerCount)")
         print(" DeviceID : \(oDevID)")
         /*print(" DeviceDataUrl : \(oDevDataUrl)")
          print(" UserName : \(oUsrName)")
@@ -271,7 +273,7 @@ class ARScenekitViewController: UIViewController, ARSCNViewDelegate {
     }
     
     //Read device metrics from Server URL
-    func GetDeviceMetricsFromServer(anAccessURL : String, anUserName: String, anPassword: String ) -> String {
+    func GetDeviceMetricsFromServer(anAccessURL : String, anUserName: String, anPassword: String, bSync: Bool) -> String {
         let config = URLSessionConfiguration.default
         var strResponse : String = ""
         let anSem = DispatchSemaphore.init(value: 0)
@@ -300,11 +302,18 @@ class ARScenekitViewController: UIViewController, ARSCNViewDelegate {
             }
             anResponse = String(data: data!, encoding: .utf8)!
             strResponse = anResponse
-            anSem.signal()
+            print("hye i got the value now")
+            if bSync == true {
+                anSem.signal()
+            }
             //self._DeviceMetrics = anResponse
         })
         anDataTsk.resume()
-        anSem.wait(timeout: .distantFuture)
+        if bSync == true {
+            anSem.wait(timeout: .distantFuture)
+        }
+        print("am about to return")
+        print("And I got this \(strResponse))")
         return strResponse
     }
     
@@ -406,7 +415,6 @@ class ARScenekitViewController: UIViewController, ARSCNViewDelegate {
             Circle.addChild(temperature)
             let sTmpRetString = GetSplitStringValue(stInput: strParamType)
             sRetString = "\(sTmpRetString)'C"
-            print(sRetString)
         }
         if strParamType.range(of: "Speed") != nil {
             let temperature = SKSpriteNode(imageNamed: "speedometer-32")
