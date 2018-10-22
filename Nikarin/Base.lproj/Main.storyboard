@@ -222,26 +222,26 @@
                                     <action selector="OnCloseClick:" destination="YI7-97-lOI" eventType="touchUpInside" id="hGF-47-IkH"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="HdB-cr-Rao">
-                                <rect key="frame" x="20" y="1047" width="222" height="60"/>
-                                <state key="normal">
-                                    <attributedString key="attributedTitle">
-                                        <fragment content="Trigger BPMN">
-                                            <attributes>
-                                                <color key="NSColor" red="0.016804177310000001" green="0.19835099580000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <font key="NSFont" size="18" name="ArialNarrow"/>
-                                                <paragraphStyle key="NSParagraphStyle" alignment="justified" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                                            </attributes>
-                                        </fragment>
-                                    </attributedString>
+                            <button opaque="NO" contentMode="scaleAspectFit" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="HdB-cr-Rao">
+                                <rect key="frame" x="500" y="50" width="48" height="48"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" image="BPMSProcess">
+                                    <attributedString key="attributedTitle"/>
                                 </state>
+                                <connections>
+                                    <action selector="TriggerBPMN:" destination="YI7-97-lOI" eventType="touchUpInside" id="c7r-vM-iUD"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleAspectFit" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Q4L-lL-Ixk">
+                                <rect key="frame" x="350" y="50" width="48" height="48"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" image="ZementisPredict"/>
+                                <connections>
+                                    <action selector="TriggerPrediction:" destination="YI7-97-lOI" eventType="touchUpInside" id="BWq-Ml-g1e"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <constraints>
-                            <constraint firstItem="nhB-Vr-EJA" firstAttribute="bottom" secondItem="HdB-cr-Rao" secondAttribute="bottom" constant="20" id="dfb-nT-2oh"/>
-                            <constraint firstItem="HdB-cr-Rao" firstAttribute="leading" secondItem="nhB-Vr-EJA" secondAttribute="leading" constant="50" id="eqK-vI-xRo"/>
-                        </constraints>
                         <viewLayoutGuide key="safeArea" id="nhB-Vr-EJA"/>
                     </view>
                     <connections>
@@ -254,9 +254,11 @@
         </scene>
     </scenes>
     <resources>
+        <image name="BPMSProcess" width="64" height="64"/>
         <image name="Black-x-mark-64" width="64" height="64"/>
         <image name="GotoArrow-28-64" width="64" height="64"/>
         <image name="NikarinPageIcon-512" width="512" height="512"/>
         <image name="White-x-mark-64" width="64" height="64"/>
+        <image name="ZementisPredict" width="64" height="64"/>
     </resources>
 </document>

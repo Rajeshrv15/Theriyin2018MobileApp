@@ -85,6 +85,20 @@ class ARScenekitViewController: UIViewController, ARSCNViewDelegate, QRViewContr
         
     }
     
+    @IBAction func TriggerPrediction(_ sender: UIButton) {
+        let sZemantisURL : String = "http://10.60.5.238:9083/adapars/apply/drill_pmml"//?record={\"RPM\": 2350,\"Temperature\": 52,\"Sound\": 3.2}"
+        let strZemantisResDict = GetDeviceMetricsFromServer(anAccessURL: sZemantisURL, anUserName: "Administrator", anPassword: "manage")
+        let sUIVal = ReadValueFromDictionaryWithKey(dtInput: strZemantisResDict, stKey: "predicted_Maintenance")
+        ShowProgressMessage(anuserHUDmessage: sUIVal, anTimeInterval: TimeInterval(2))
+    }
+    
+    @IBAction func TriggerBPMN(_ sender: UIButton) {
+        let sBPMSURL : String = "http://10.60.5.238:5555/invoke/Service/CallRepairBPMS?DeviceID=2323456&DeviceName=Drill&Email=vchi@softwareag.com&EmailBody=Send Technician for the service"
+        _ = GetDeviceMetricsFromServer(anAccessURL: sBPMSURL, anUserName: "Administrator", anPassword: "manage")
+        //let sUIVal = ReadValueFromDictionaryWithKey(dtInput: strBPMSResDict, stKey: "predicted_Maintenance")
+        ShowProgressMessage(anuserHUDmessage: "BPMS triggered", anTimeInterval: TimeInterval(2))
+    }
+    
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         
@@ -173,11 +187,11 @@ class ARScenekitViewController: UIViewController, ARSCNViewDelegate, QRViewContr
          print(" UserName : \(oUsrName)")
          print(" Password : \(oPass)")
          print(" Previous Response : \(self._DeviceMetrics)")*/
-        GetDeviceMetricsFromServer(anAccessURL: oDevDataUrl, anUserName: oUsrName, anPassword: oPass)
+        _DeviceMetrics = GetDeviceMetricsFromServer(anAccessURL: oDevDataUrl, anUserName: oUsrName, anPassword: oPass)
         
         if _DeviceMetrics.isEmpty {
             //print("Value yet to assign")
-            return
+            //return
         }
         var dictionary:NSDictionary?
         _sDisplayMetrics = ""
@@ -218,8 +232,13 @@ class ARScenekitViewController: UIViewController, ARSCNViewDelegate, QRViewContr
     }
     
     //Read device metrics from Server URL
-    func GetDeviceMetricsFromServer(anAccessURL : String, anUserName: String, anPassword: String ) {
+    func GetDeviceMetricsFromServer(anAccessURL : String, anUserName: String, anPassword: String ) -> String {
         let config = URLSessionConfiguration.default
+        var strResponse : String = ""
+        
+        if (anAccessURL == nil || anAccessURL.isEmpty) {
+            return strResponse
+        }
         
         if (!anUserName.isEmpty && !anPassword.isEmpty) {
             let userPasswordData = "\(anUserName):\(anPassword)".data(using: .utf8)
@@ -240,8 +259,11 @@ class ARScenekitViewController: UIViewController, ARSCNViewDelegate, QRViewContr
                 return
             }
             anResponse = String(data: data!, encoding: .utf8)!
-            self._DeviceMetrics = anResponse
+            strResponse = anResponse
+            //self._DeviceMetrics = anResponse
         }).resume()
+        
+        return strResponse
     }
     
     @objc func UpdateTextNode() {
@@ -413,6 +435,30 @@ class ARScenekitViewController: UIViewController, ARSCNViewDelegate, QRViewContr
             self._oUserHUD.label.text = anuserHUDmessage
             self._oUserHUD.hide(animated: true, afterDelay: anTimeInterval)
         }
+    }
+    
+    func ReadValueFromDictionaryWithKey(dtInput : String, stKey : String) -> String {
+        
+        var stOutput : String = ""
+        if dtInput.isEmpty {
+            return stOutput
+        }
+        var dictionary:NSDictionary?
+        if let data = dtInput.data(using: String.Encoding.utf8) {
+            do {
+                dictionary = try JSONSerialization.jsonObject(with: data, options: []) as? [String:AnyObject] as NSDictionary?
+                if let myDictionary = dictionary
+                {
+                    let anOutput = myDictionary.value(forKey: stKey) as? String
+                    if (anOutput != nil) {
+                        stOutput = anOutput!
+                    }
+                }
+            } catch let error as NSError {
+                print(error)
+            }
+        }
+        return stOutput
     }
     
 }
