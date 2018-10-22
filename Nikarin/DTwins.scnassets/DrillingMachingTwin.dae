@@ -4,8 +4,8 @@
   <contributor>
    <authoring_tool>SceneKit Collada Exporter v1.0</authoring_tool>
   </contributor>
-  <created>2018-10-22T07:54:20Z</created>
-  <modified>2018-10-22T07:54:20Z</modified>
+  <created>2018-10-22T08:29:30Z</created>
+  <modified>2018-10-22T08:29:30Z</modified>
   <unit meter="0.025400"/>
   <up_axis>Y_UP</up_axis>
  </asset>
@@ -8554,7 +8554,7 @@
  <library_visual_scenes>
   <visual_scene id="scene1262">
    <node id="SketchUp" name="SketchUp">
-    <matrix>0.03 0 0 -2.980232e-08 0 0.03 0 0 0 0 0.03 0 0 0 0 1 </matrix>
+    <matrix>0.03 0 0 0 0 0.03 0 0 0 0 0.03 0 0 0 0 1 </matrix>
     <node id="ID1550" name="ID1550">
      <instance_geometry url="#geometry1">
       <bind_material>

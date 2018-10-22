@@ -33,7 +33,7 @@ class ViewControllerTwinLoad: UIViewController, ARSCNViewDelegate {
         // Show statistics such as fps and timing information
         scnDigitalTwin.showsStatistics = false
         
-        //scnDigitalTwin.debugOptions = [ARSCNDebugOptions.showWorldOrigin, ARSCNDebugOptions.showFeaturePoints]
+        scnDigitalTwin.debugOptions = [ARSCNDebugOptions.showFeaturePoints]
         
         //Get Tapgesture
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(ViewControllerTwinLoad.addTwinImageToScene(withGestureRecognizer:)))
@@ -66,6 +66,11 @@ class ViewControllerTwinLoad: UIViewController, ARSCNViewDelegate {
     }
     
     func renderer(_ renderer: SCNSceneRenderer, didAdd node: SCNNode, for anchor: ARAnchor) {
+        
+        if _drillBitHolder != nil {
+            return
+        }
+        
         guard let planeAnchor = anchor as? ARPlaneAnchor else { return }
         
         let width = CGFloat(planeAnchor.extent.x)
@@ -79,7 +84,7 @@ class ViewControllerTwinLoad: UIViewController, ARSCNViewDelegate {
         let x = CGFloat(planeAnchor.center.x)
         let y = CGFloat(planeAnchor.center.y)
         let z = CGFloat(planeAnchor.center.z)
-        planeNode.position = SCNVector3(x,y,z)
+        planeNode.position = SCNVector3(x,0,z)
         planeNode.eulerAngles.x = -.pi / 2
         
         node.addChildNode(planeNode)
@@ -103,21 +108,24 @@ class ViewControllerTwinLoad: UIViewController, ARSCNViewDelegate {
     }
     
     @objc func addTwinImageToScene(withGestureRecognizer recognizer: UIGestureRecognizer) {
+        if _drillBitHolder != nil {
+            return
+        }
         let tapLocation = recognizer.location(in: scnDigitalTwin)
         let hitTestResults = scnDigitalTwin.hitTest(tapLocation, types: .existingPlaneUsingExtent)
-        print ("hittestresults func called")
+        //print ("hittestresults func called")
         guard let hitTestResult = hitTestResults.first else {
-            print ("hittestresults else returned")
+            //print ("hittestresults else returned")
             return }
         let translation = hitTestResult.worldTransform.columns.3
         
         guard let twinImgScene = SCNScene(named: "DTwins.scnassets/DrillingMachingTwin.dae"),
             let shipNode = twinImgScene.rootNode.childNode(withName: "SketchUp", recursively: false)
             else {
-                print("ship.scn return")
+                //print("ship.scn return")
                 return
         }
-        print ("adding node here")
+        //print ("adding node here")
         
         //Drill bit's holder rotation
         _drillBitHolder = twinImgScene.rootNode.childNode(withName: "AnSpinWheelRoot", recursively: true)!
