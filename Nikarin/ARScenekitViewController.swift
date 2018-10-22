@@ -88,7 +88,9 @@ class ARScenekitViewController: UIViewController, ARSCNViewDelegate {
     @IBAction func TriggerPrediction(_ sender: UIButton) {
         let sZemantisURL : String = "http://10.60.5.238:9083/adapars/apply/drill_pmml?record={\"RPM\": 2350,\"Temperature\": 52,\"Sound\": 3.2}"
         let strZemantisResDict = GetDeviceMetricsFromServer(anAccessURL: sZemantisURL, anUserName: "Administrator", anPassword: "manage", bSync: true)
+        print("Response received \(strZemantisResDict)")
         let sUIVal = ReadValueFromDictionaryWithKey(dtInput: strZemantisResDict, stKey: "predicted_Maintenance")
+        //let sUIVal = ReadValueFromDictionaryRecursively(dtInput: strZemantisResDict, stKey: "predicted_Maintenance")
         ShowProgressMessage(anuserHUDmessage: "As per prediction maintenance required. \(sUIVal)", anTimeInterval: TimeInterval(2))
     }
     
@@ -457,6 +459,44 @@ class ARScenekitViewController: UIViewController, ARSCNViewDelegate {
                     if (anOutput != nil) {
                         stOutput = anOutput!
                     }
+                }
+            } catch let error as NSError {
+                print(error)
+            }
+        }
+        return stOutput
+    }
+    
+    func ReadValueFromDictionaryRecursively(dtInput : String, stKey : String) -> String {
+        var stOutput : String = ""
+        if dtInput.isEmpty {
+            return stOutput
+        }
+        var dictionary:NSDictionary?
+        if let data = dtInput.data(using: String.Encoding.utf8) {
+            do {
+                dictionary = try JSONSerialization.jsonObject(with: data, options: []) as? [String:AnyObject] as NSDictionary?
+                if let myDictionary = dictionary
+                {
+                    for (anKey, anValue) in myDictionary {
+                        print("anKey \(anKey)")
+                        print("anValue \(anValue)")
+                        ReadValueFromDictionaryRecursively(dtInput: anValue as! String, stKey: "Test")
+                        /*var dictionary2:NSDictionary?
+                        let data2 = anValue.data(using: String.Encoding.utf8)
+                        dictionary2 = try JSONSerialization.jsonObject(with: data2, options: []) as? [String:AnyObject] as NSDictionary?
+                        if let myDictionary2 = dictionary2
+                        {
+                            for (anKey2, anValue2) in myDictionary2 {
+                                print("ankey2 \(anKey2)")
+                                print("anValue2 \(anValue2)")
+                            }
+                        }*/
+                    }
+                    /*let anOutput = myDictionary.value(forKey: stKey) as? String
+                    if (anOutput != nil) {
+                        stOutput = anOutput!
+                    }*/
                 }
             } catch let error as NSError {
                 print(error)
