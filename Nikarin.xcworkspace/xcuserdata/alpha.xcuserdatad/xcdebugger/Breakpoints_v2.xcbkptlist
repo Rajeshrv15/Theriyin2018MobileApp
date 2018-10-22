@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Nikarin/ARScenekitViewController.swift"
-            timestampString = "561904945.7635731"
+            timestampString = "561906105.691367"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "152"
-            endingLineNumber = "152"
+            startingLineNumber = "149"
+            endingLineNumber = "149"
             landmarkName = "ReadConnectionDetails()"
             landmarkType = "7">
          </BreakpointContent>
@@ -26,28 +26,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Nikarin/ARScenekitViewController.swift"
-            timestampString = "561904945.764024"
+            timestampString = "561906105.691491"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "311"
-            endingLineNumber = "311"
+            startingLineNumber = "270"
+            endingLineNumber = "270"
             landmarkName = "GetDeviceMetricsFromServer(anAccessURL:anUserName:anPassword:bSync:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Nikarin/ARScenekitViewController.swift"
-            timestampString = "561904945.764295"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "263"
-            endingLineNumber = "263"
-            landmarkName = "GetDeviceMetricsFromServerAsyc(anAccessURL:anUserName:anPassword:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

@@ -52,8 +52,8 @@
                                 </attributedString>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="NikarinPageIcon-512" translatesAutoresizingMaskIntoConstraints="NO" id="dQW-tJ-khd">
-                                <rect key="frame" x="148" y="225" width="118" height="114"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="NikarinPageIcon-512" translatesAutoresizingMaskIntoConstraints="NO" id="dQW-tJ-khd">
+                                <rect key="frame" x="162" y="225" width="118" height="114"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="IdW-zX-A8m">

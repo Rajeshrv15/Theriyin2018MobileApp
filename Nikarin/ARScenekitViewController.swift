@@ -88,22 +88,19 @@ class ARScenekitViewController: UIViewController, ARSCNViewDelegate {
     @IBAction func TriggerPrediction(_ sender: UIButton) {
         let sZemantisURL : String = "http://10.60.5.238:9083/adapars/apply/drill_pmml?record={\"RPM\": 2350,\"Temperature\": 52,\"Sound\": 3.2}"
         let strZemantisResDict = GetDeviceMetricsFromServer(anAccessURL: sZemantisURL, anUserName: "Administrator", anPassword: "manage", bSync: true)
-        print("TriggerPrediction not sure whether i got the value")
-        //let sUIVal = ReadValueFromDictionaryWithKey(dtInput: strZemantisResDict, stKey: "predicted_Maintenance")
-        ShowProgressMessage(anuserHUDmessage: "As per prediction maintenance required", anTimeInterval: TimeInterval(2))
+        let sUIVal = ReadValueFromDictionaryWithKey(dtInput: strZemantisResDict, stKey: "predicted_Maintenance")
+        ShowProgressMessage(anuserHUDmessage: "As per prediction maintenance required. \(sUIVal)", anTimeInterval: TimeInterval(2))
     }
     
     @IBAction func TriggerBPMN(_ sender: UIButton) {
         let sBPMSURL : String = "http://10.60.5.238:5555/invoke/Service/CallRepairBPMS?DeviceID=2323456&DeviceName=Drill&Email=rrad@softwareag.com&EmailBody=Send Technician for the service"
         let strBPMSResDict = GetDeviceMetricsFromServer(anAccessURL: sBPMSURL, anUserName: "Administrator", anPassword: "manage", bSync: true)
-        print("TriggerBPMN not sure whether i got the value")
         //let sUIVal = ReadValueFromDictionaryWithKey(dtInput: strBPMSResDict, stKey: "predicted_Maintenance")
-        ShowProgressMessage(anuserHUDmessage: "BPMS triggered", anTimeInterval: TimeInterval(2))
+        ShowProgressMessage(anuserHUDmessage: "BPMS triggered.", anTimeInterval: TimeInterval(2))
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        
         anSceneView.session.pause()
     }
     
@@ -186,7 +183,6 @@ class ARScenekitViewController: UIViewController, ARSCNViewDelegate {
          print(" Password : \(oPass)")
          print(" Previous Response : \(self._DeviceMetrics)")*/
         self._DeviceMetrics = GetDeviceMetricsFromServer(anAccessURL: oDevDataUrl, anUserName: oUsrName, anPassword: oPass, bSync: true)
-        //GetDeviceMetricsFromServerAsyc(anAccessURL: oDevDataUrl, anUserName: oUsrName, anPassword: oPass)
         
         if _DeviceMetrics.isEmpty {
             print("Value yet to assign")
@@ -229,42 +225,7 @@ class ARScenekitViewController: UIViewController, ARSCNViewDelegate {
             _sDisplayMessage = "Temperature execeeded the threshold."// coming from Nikarin platform based on the scanned device"
         }*/
     }
-    
-    //Read device metrics from Server URL
-    /*func GetDeviceMetricsFromServerAsyc(anAccessURL : String, anUserName: String, anPassword: String ) {
-        let config = URLSessionConfiguration.default
-        //let anSem = DispatchSemaphore.init(value: 0)
-        
-        if (anAccessURL == nil || anAccessURL.isEmpty) {
-            return
-        }
-        
-        if (!anUserName.isEmpty && !anPassword.isEmpty) {
-            let userPasswordData = "\(anUserName):\(anPassword)".data(using: .utf8)
-            let base64EncodedCredential = userPasswordData!.base64EncodedString(options: Data.Base64EncodingOptions.init(rawValue: 0))
-            let authString = "Basic \(base64EncodedCredential)"
-            config.httpAdditionalHeaders = ["Authorization" : authString]
-        }
-        
-        //print("URL : " + anAccessURL)
-        let session = URLSession(configuration: config)
-        
-        let anUrl = URL(string: anAccessURL.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!)!
-        let anUrlRequest : URLRequest = URLRequest(url: anUrl)
-        var anResponse : String = ""
-        session.dataTask(with: anUrlRequest as URLRequest, completionHandler: { (data, response, error) -> Void in
-            guard error == nil else {
-                print(error?.localizedDescription ?? "")
-                return
-            }
-            anResponse = String(data: data!, encoding: .utf8)!
-            self._DeviceMetrics = anResponse
-            //anSem.signal()
-            //self._DeviceMetrics = anResponse
-        }).resume()
-        //anSem.wait(timeout: .distantFuture)
-        //return strResponse
-    }*/
+
     
     //Read device metrics from Server URL
     func GetDeviceMetricsFromServer(anAccessURL : String, anUserName: String, anPassword: String, bSync: Bool) -> String {
@@ -296,7 +257,6 @@ class ARScenekitViewController: UIViewController, ARSCNViewDelegate {
             }
             anResponse = String(data: data!, encoding: .utf8)!
             strResponse = anResponse
-            print("hye i got the value now")
             if bSync == true {
                 anSem.signal()
             }
@@ -306,8 +266,7 @@ class ARScenekitViewController: UIViewController, ARSCNViewDelegate {
         if bSync == true {
             anSem.wait(timeout: .distantFuture)
         }
-        print("am about to return")
-        print("And I got this \(strResponse))")
+        //print("And I got this reponse : \(strResponse))")
         return strResponse
     }
     
@@ -377,7 +336,6 @@ class ARScenekitViewController: UIViewController, ARSCNViewDelegate {
             label.fontSize =  72
             label.fontColor = UIColor.white
             
-            
             /*box.addChild(label)
              skScene.addChild(box)*/
             
@@ -436,8 +394,8 @@ class ARScenekitViewController: UIViewController, ARSCNViewDelegate {
     func GetDisplayMessageNode(skScene : SKScene) -> SKSpriteNode {
         let iYPosition = 250
         let box = SKSpriteNode(color: UIColor.clear, size: CGSize(width: 1900, height: 450))
-        //to show in row
         
+        //to show in row        
         //box.position = CGPoint(x: skScene.frame.minX + CGFloat(355) , y: skScene.frame.minY + (box.size.height/2) + CGFloat(iYPosition))
         box.position = CGPoint(x: 0 , y: skScene.frame.minY + (box.size.height/2) + CGFloat(iYPosition))
         //to show in column
