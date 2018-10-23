@@ -220,7 +220,7 @@ class ARScenekitViewController: UIViewController, ARSCNViewDelegate {
         
         if (_sDisplayMetrics == "")
         {
-            _sDisplayMetrics = "Temperature:\(_timerCount)'C,Speed:\(3429 + _timerCount),Sound:\(0.88 + Double(_timerCount))"
+            _sDisplayMetrics = "Temperature:\(_timerCount),Speed:\(3429 + _timerCount),Sound:\(0.88 + Double(_timerCount))"
         }
         /*if (_sDisplayMessage == "")
         {
