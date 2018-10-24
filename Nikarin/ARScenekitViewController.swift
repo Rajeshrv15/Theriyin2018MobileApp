@@ -90,14 +90,12 @@ class ARScenekitViewController: UIViewController, ARSCNViewDelegate {
         let strZemantisResDict = GetDeviceMetricsFromServer(anAccessURL: sZemantisURL, anUserName: "Administrator", anPassword: "manage", bSync: true)
         print("Response received \(strZemantisResDict)")
         let sUIVal = ReadValueFromDictionaryWithKey(dtInput: strZemantisResDict, stKey: "predicted_Maintenance")
-        //let sUIVal = ReadValueFromDictionaryRecursively(dtInput: strZemantisResDict, stKey: "predicted_Maintenance")
         ShowProgressMessage(anuserHUDmessage: "As per prediction maintenance required. \(sUIVal)", anTimeInterval: TimeInterval(5))
     }
     
     @IBAction func TriggerBPMN(_ sender: UIButton) {
         let sBPMSURL : String = "http://10.60.5.238:5555/invoke/Service/CallRepairBPMS?DeviceID=2323456&DeviceName=Drill&Email=rrad@softwareag.com&EmailBody=Send Technician for the service"
-        let strBPMSResDict = GetDeviceMetricsFromServer(anAccessURL: sBPMSURL, anUserName: "Administrator", anPassword: "manage", bSync: true)
-        //let sUIVal = ReadValueFromDictionaryWithKey(dtInput: strBPMSResDict, stKey: "predicted_Maintenance")
+        //let strBPMSResDict = GetDeviceMetricsFromServer(anAccessURL: sBPMSURL, anUserName: "Administrator", anPassword: "manage", bSync: true)
         ShowProgressMessage(anuserHUDmessage: "BPMS triggered.", anTimeInterval: TimeInterval(5))
     }
     
@@ -134,7 +132,6 @@ class ARScenekitViewController: UIViewController, ARSCNViewDelegate {
             let newPosition2 = hitResult.localCoordinates
             
             if let tappedNode = result.first?.node {
-                
                 //tappedNode.position = SCNVector3Make(tappedNode.position.x+newPosition2.x, tappedNode.position.y+newPosition2.y, tappedNode.position.z)
                 _NewLocationSCNVector3 = SCNVector3Make(tappedNode.position.x+newPosition2.x, tappedNode.position.y+newPosition2.y, tappedNode.position.z)
             }
@@ -453,6 +450,40 @@ class ARScenekitViewController: UIViewController, ARSCNViewDelegate {
         if let data = dtInput.data(using: String.Encoding.utf8) {
             do {
                 dictionary = try JSONSerialization.jsonObject(with: data, options: []) as? [String:AnyObject] as NSDictionary?
+            } catch {
+                return ""
+            }
+            if let myDictionary = dictionary {
+                for (_, anValue) in myDictionary {
+                    if anValue is NSArray {
+                        let temp = anValue as AnyObject as! NSArray
+                        if temp != nil {
+                            //print ("am with array now !")
+                            temp.forEach { anitem in
+                                let anDict:NSDictionary = (anitem as! [String:AnyObject] as NSDictionary?)!
+                                if anDict != nil {
+                                    for(_, _) in anDict {
+                                        let anOutput = anDict.value(forKey: stKey) as? String
+                                        if (anOutput != nil) {
+                                            stOutput = anOutput!
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    else
+                    {
+                        let anOutput = myDictionary.value(forKey: stKey) as? String
+                        if (anOutput != nil) {
+                            stOutput = anOutput!
+                        }
+                    }
+                }
+            }
+            
+            /*do {
+                dictionary = try JSONSerialization.jsonObject(with: data, options: []) as? [String:AnyObject] as NSDictionary?
                 if let myDictionary = dictionary
                 {
                     let anOutput = myDictionary.value(forKey: stKey) as? String
@@ -462,49 +493,10 @@ class ARScenekitViewController: UIViewController, ARSCNViewDelegate {
                 }
             } catch let error as NSError {
                 print(error)
-            }
+            }*/
         }
         return stOutput
     }
-    
-    func ReadValueFromDictionaryRecursively(dtInput : String, stKey : String) -> String {
-        var stOutput : String = ""
-        if dtInput.isEmpty {
-            return stOutput
-        }
-        var dictionary:NSDictionary?
-        if let data = dtInput.data(using: String.Encoding.utf8) {
-            do {
-                dictionary = try JSONSerialization.jsonObject(with: data, options: []) as? [String:AnyObject] as NSDictionary?
-                if let myDictionary = dictionary
-                {
-                    for (anKey, anValue) in myDictionary {
-                        print("anKey \(anKey)")
-                        print("anValue \(anValue)")
-                        ReadValueFromDictionaryRecursively(dtInput: anValue as! String, stKey: "Test")
-                        /*var dictionary2:NSDictionary?
-                        let data2 = anValue.data(using: String.Encoding.utf8)
-                        dictionary2 = try JSONSerialization.jsonObject(with: data2, options: []) as? [String:AnyObject] as NSDictionary?
-                        if let myDictionary2 = dictionary2
-                        {
-                            for (anKey2, anValue2) in myDictionary2 {
-                                print("ankey2 \(anKey2)")
-                                print("anValue2 \(anValue2)")
-                            }
-                        }*/
-                    }
-                    /*let anOutput = myDictionary.value(forKey: stKey) as? String
-                    if (anOutput != nil) {
-                        stOutput = anOutput!
-                    }*/
-                }
-            } catch let error as NSError {
-                print(error)
-            }
-        }
-        return stOutput
-    }
-    
 }
 
 struct IoTDeviceData {
