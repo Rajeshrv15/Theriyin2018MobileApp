@@ -321,8 +321,8 @@
                             <arscnView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yDf-ha-aVA">
                                 <rect key="frame" x="0.0" y="0.0" width="834" height="1112"/>
                             </arscnView>
-                            <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MBU-Gg-EK6">
-                                <rect key="frame" x="780" y="55" width="27" height="27"/>
+                            <button opaque="NO" contentMode="scaleAspectFit" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MBU-Gg-EK6">
+                                <rect key="frame" x="780" y="50" width="27" height="27"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="27" id="Rua-sA-6gt"/>
                                     <constraint firstAttribute="width" constant="27" id="oFW-4t-znE"/>
@@ -332,19 +332,42 @@
                                     <action selector="btnClose:" destination="5Xb-zh-pXL" eventType="touchUpInside" id="SrV-b4-bzt"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0eK-Iw-QB0">
+                                <rect key="frame" x="745" y="1023" width="64" height="64"/>
+                                <state key="normal" image="brush-2-64"/>
+                            </button>
+                            <button opaque="NO" contentMode="scaleAspectFit" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CQc-eI-iMe">
+                                <rect key="frame" x="492" y="50" width="64" height="64"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" image="save-64"/>
+                                <connections>
+                                    <action selector="clickSaveScene:" destination="5Xb-zh-pXL" eventType="touchUpInside" id="qbw-Oi-hrO"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleAspectFit" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AnB-mn-ZVT">
+                                <rect key="frame" x="350" y="50" width="64" height="64"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" image="download-2-64"/>
+                                <connections>
+                                    <action selector="clickLoadScene:" destination="5Xb-zh-pXL" eventType="touchUpInside" id="Jkz-dr-i2n"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="yDf-ha-aVA" firstAttribute="leading" secondItem="WNd-jK-ZCa" secondAttribute="leading" id="2TR-sQ-mKi"/>
+                            <constraint firstItem="WNd-jK-ZCa" firstAttribute="bottom" secondItem="0eK-Iw-QB0" secondAttribute="bottom" constant="25" id="909-De-1Bb"/>
                             <constraint firstItem="WNd-jK-ZCa" firstAttribute="trailing" secondItem="yDf-ha-aVA" secondAttribute="trailing" id="C2J-mz-fM1"/>
                             <constraint firstItem="WNd-jK-ZCa" firstAttribute="bottom" secondItem="yDf-ha-aVA" secondAttribute="bottom" id="EMp-nd-JVy"/>
                             <constraint firstItem="MBU-Gg-EK6" firstAttribute="top" secondItem="WNd-jK-ZCa" secondAttribute="top" constant="35" id="G4V-B1-H5P"/>
+                            <constraint firstItem="WNd-jK-ZCa" firstAttribute="trailing" secondItem="0eK-Iw-QB0" secondAttribute="trailing" constant="25" id="Hig-sN-L6E"/>
                             <constraint firstItem="WNd-jK-ZCa" firstAttribute="trailing" secondItem="MBU-Gg-EK6" secondAttribute="trailing" constant="27" id="M1l-Ln-qFR"/>
                             <constraint firstItem="yDf-ha-aVA" firstAttribute="top" secondItem="WNd-jK-ZCa" secondAttribute="top" constant="-20" id="TaW-Ec-34s"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="WNd-jK-ZCa"/>
                     </view>
                     <connections>
+                        <outlet property="btnDraw" destination="0eK-Iw-QB0" id="ZDd-5m-6DS"/>
                         <outlet property="scnViewCollab" destination="yDf-ha-aVA" id="aRJ-q0-llz"/>
                     </connections>
                 </viewController>
@@ -360,5 +383,8 @@
         <image name="NikarinPageIcon-512" width="512" height="512"/>
         <image name="White-x-mark-64" width="64" height="64"/>
         <image name="ZementisPredict" width="64" height="64"/>
+        <image name="brush-2-64" width="64" height="64"/>
+        <image name="download-2-64" width="64" height="64"/>
+        <image name="save-64" width="64" height="64"/>
     </resources>
 </document>
