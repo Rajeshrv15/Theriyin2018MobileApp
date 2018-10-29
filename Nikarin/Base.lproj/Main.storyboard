@@ -317,13 +317,40 @@
                     <view key="view" contentMode="scaleToFill" id="PLh-nZ-Rr9">
                         <rect key="frame" x="0.0" y="0.0" width="834" height="1112"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <arscnView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yDf-ha-aVA">
+                                <rect key="frame" x="0.0" y="0.0" width="834" height="1112"/>
+                            </arscnView>
+                            <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MBU-Gg-EK6">
+                                <rect key="frame" x="780" y="55" width="27" height="27"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="27" id="Rua-sA-6gt"/>
+                                    <constraint firstAttribute="width" constant="27" id="oFW-4t-znE"/>
+                                </constraints>
+                                <state key="normal" image="Black-x-mark-64"/>
+                                <connections>
+                                    <action selector="btnClose:" destination="5Xb-zh-pXL" eventType="touchUpInside" id="SrV-b4-bzt"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="yDf-ha-aVA" firstAttribute="leading" secondItem="WNd-jK-ZCa" secondAttribute="leading" id="2TR-sQ-mKi"/>
+                            <constraint firstItem="WNd-jK-ZCa" firstAttribute="trailing" secondItem="yDf-ha-aVA" secondAttribute="trailing" id="C2J-mz-fM1"/>
+                            <constraint firstItem="WNd-jK-ZCa" firstAttribute="bottom" secondItem="yDf-ha-aVA" secondAttribute="bottom" id="EMp-nd-JVy"/>
+                            <constraint firstItem="MBU-Gg-EK6" firstAttribute="top" secondItem="WNd-jK-ZCa" secondAttribute="top" constant="35" id="G4V-B1-H5P"/>
+                            <constraint firstItem="WNd-jK-ZCa" firstAttribute="trailing" secondItem="MBU-Gg-EK6" secondAttribute="trailing" constant="27" id="M1l-Ln-qFR"/>
+                            <constraint firstItem="yDf-ha-aVA" firstAttribute="top" secondItem="WNd-jK-ZCa" secondAttribute="top" constant="-20" id="TaW-Ec-34s"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="WNd-jK-ZCa"/>
                     </view>
+                    <connections>
+                        <outlet property="scnViewCollab" destination="yDf-ha-aVA" id="aRJ-q0-llz"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Z8r-a2-qPl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="117" y="925"/>
+            <point key="canvasLocation" x="116.54676258992806" y="924.8201438848921"/>
         </scene>
     </scenes>
     <resources>

@@ -12,4 +12,10 @@ import SceneKit
 
 class CollabViewController: UIViewController, ARSCNViewDelegate {
     
+    
+    @IBOutlet weak var scnViewCollab: ARSCNView!
+    
+    @IBAction func btnClose(_ sender: Any) {
+        dismiss(animated: true, completion: nil)
+    }
 }
