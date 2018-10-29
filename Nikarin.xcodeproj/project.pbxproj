@@ -15,6 +15,7 @@
 		DE22A0862175AD5900CFBB2A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DE22A0842175AD5900CFBB2A /* LaunchScreen.storyboard */; };
 		DE22A08E2175B5F200CFBB2A /* QRViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE22A08D2175B5F200CFBB2A /* QRViewController.swift */; };
 		DE22A0902175B62400CFBB2A /* ARScenekitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE22A08F2175B62400CFBB2A /* ARScenekitViewController.swift */; };
+		DE4C672B2187233100DA58D0 /* CollabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE4C672A2187233100DA58D0 /* CollabViewController.swift */; };
 		DED62D4D217D9D350094EAF7 /* ViewControllerTwinLoad.swift in Sources */ = {isa = PBXBuildFile; fileRef = DED62D4C217D9D350094EAF7 /* ViewControllerTwinLoad.swift */; };
 		DED62D4F217DADE10094EAF7 /* DTwins.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = DED62D4E217DADE10094EAF7 /* DTwins.scnassets */; };
 /* End PBXBuildFile section */
@@ -32,6 +33,7 @@
 		DE22A0872175AD5900CFBB2A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DE22A08D2175B5F200CFBB2A /* QRViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRViewController.swift; sourceTree = "<group>"; };
 		DE22A08F2175B62400CFBB2A /* ARScenekitViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARScenekitViewController.swift; sourceTree = "<group>"; };
+		DE4C672A2187233100DA58D0 /* CollabViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollabViewController.swift; sourceTree = "<group>"; };
 		DED62D4C217D9D350094EAF7 /* ViewControllerTwinLoad.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerTwinLoad.swift; sourceTree = "<group>"; };
 		DED62D4E217DADE10094EAF7 /* DTwins.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = DTwins.scnassets; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -88,6 +90,7 @@
 				DE22A08F2175B62400CFBB2A /* ARScenekitViewController.swift */,
 				DED62D4C217D9D350094EAF7 /* ViewControllerTwinLoad.swift */,
 				DED62D4E217DADE10094EAF7 /* DTwins.scnassets */,
+				DE4C672A2187233100DA58D0 /* CollabViewController.swift */,
 			);
 			path = Nikarin;
 			sourceTree = "<group>";
@@ -216,6 +219,7 @@
 				DE22A07E2175AD5500CFBB2A /* ViewController.swift in Sources */,
 				DE22A0902175B62400CFBB2A /* ARScenekitViewController.swift in Sources */,
 				DE22A07C2175AD5500CFBB2A /* AppDelegate.swift in Sources */,
+				DE4C672B2187233100DA58D0 /* CollabViewController.swift in Sources */,
 				DE22A08E2175B5F200CFBB2A /* QRViewController.swift in Sources */,
 				DED62D4D217D9D350094EAF7 /* ViewControllerTwinLoad.swift in Sources */,
 			);
