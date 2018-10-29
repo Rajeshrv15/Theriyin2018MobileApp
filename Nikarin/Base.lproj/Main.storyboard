@@ -336,11 +336,12 @@
                                 <rect key="frame" x="745" y="1023" width="64" height="64"/>
                                 <state key="normal" image="brush-2-64"/>
                             </button>
-                            <button opaque="NO" contentMode="scaleAspectFit" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CQc-eI-iMe">
+                            <button opaque="NO" contentMode="scaleAspectFit" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CQc-eI-iMe" customClass="RoundedButton" customModule="Nikarin" customModuleProvider="target">
                                 <rect key="frame" x="492" y="50" width="64" height="64"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" image="save-64"/>
                                 <connections>
+                                    <action selector="ToAnimateWhenTouched:" destination="5Xb-zh-pXL" eventType="touchDown" id="pbG-Wn-hFU"/>
                                     <action selector="clickSaveScene:" destination="5Xb-zh-pXL" eventType="touchUpInside" id="qbw-Oi-hrO"/>
                                 </connections>
                             </button>
@@ -349,6 +350,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" image="download-2-64"/>
                                 <connections>
+                                    <action selector="ToAnimateWhenTouched:" destination="5Xb-zh-pXL" eventType="touchDown" id="tYv-5M-Q5o"/>
                                     <action selector="clickLoadScene:" destination="5Xb-zh-pXL" eventType="touchUpInside" id="Jkz-dr-i2n"/>
                                 </connections>
                             </button>

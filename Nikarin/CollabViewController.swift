@@ -194,6 +194,32 @@ class CollabViewController: UIViewController, ARSessionDelegate, ARSCNViewDelega
         print("Loaded anchor")
     }
     
+    
+    @IBAction func ToAnimateWhenTouched(_ sender: UIButton) {
+        UIButton.animate(withDuration: 0.2,
+          animations: {
+            sender.transform = CGAffineTransform(scaleX: 0.5, y: 0.5)
+          },
+          completion: { finish in
+            UIButton.animate(withDuration: 0.5, animations: {
+            sender.transform = CGAffineTransform.identity
+          })
+        })
+    }
+    
+    @IBAction func ToAnimateWhenTouchedDownload(_ sender: UIButton) {
+        UIButton.animate(withDuration: 0.2,
+           animations: {
+             sender.transform = CGAffineTransform(scaleX: 0.5, y: 0.5)
+        },
+           completion: { finish in
+             UIButton.animate(withDuration: 0.5, animations: {
+             sender.transform = CGAffineTransform.identity
+            })
+        })
+    }
+    
+    
     @IBAction func btnClose(_ sender: Any) {
         dismiss(animated: true, completion: nil)
     }
