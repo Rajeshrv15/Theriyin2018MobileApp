@@ -18,12 +18,13 @@ class ARScenekitViewController: UIViewController, ARSCNViewDelegate {
     @IBOutlet weak var anSceneView: ARSCNView!
     
     //Current Device ID & end point details
+    var oJsonReaderUtility: JsonReaderUtility = JsonReaderUtility()
     public var _CurrentIoTDeviceToWatch : String = "CodedDeviceId"
-    var oDevID : String = ""
+    /*var oDevID : String = ""
     var oDevDataUrl : String = ""
     var oUsrName : String = ""
     var oPass : String = ""
-    var oEmailIds : String = ""
+    var oEmailIds : String = ""*/
     
     //Sceen Text to show _DeviceMetrics
     var _ParentNodeForTextNode : SCNNode!
@@ -63,8 +64,8 @@ class ARScenekitViewController: UIViewController, ARSCNViewDelegate {
         //self.anSceneView.session.run(configuration)
         self.anSceneView.delegate = self
         
-        
-        ReadConnectionDetails() //Read the connection details from QR code
+        oJsonReaderUtility._CurrentIoTDeviceToWatch = _CurrentIoTDeviceToWatch
+        oJsonReaderUtility.ReadConnectionDetails() //Read the connection details from QR code
         
         timerReadFromServer = Timer.scheduledTimer(timeInterval: 3, target: self, selector: #selector(ReadDisplayValueFromServer), userInfo: nil, repeats: true)
         timerUpdateTextNode = Timer.scheduledTimer(timeInterval: 3, target: self, selector: #selector(UpdateTextNode), userInfo: nil, repeats: true)
@@ -95,7 +96,7 @@ class ARScenekitViewController: UIViewController, ARSCNViewDelegate {
     }
     
     @IBAction func TriggerBPMN(_ sender: UIButton) {
-        let sBPMSURL : String = "http://10.60.5.238:5555/invoke/Service/CallRepairBPMS?DeviceID=2323456&DeviceName=Drill&Email=\(oEmailIds)&EmailBody=Send Technician for the service"
+        let sBPMSURL : String = "http://10.60.5.238:5555/invoke/Service/CallRepairBPMS?DeviceID=2323456&DeviceName=Drill&Email=\(oJsonReaderUtility.oEmailIds)&EmailBody=Send Technician for the service"
         let strBPMSResDict = GetDeviceMetricsFromServer(anAccessURL: sBPMSURL, anUserName: "Administrator", anPassword: "manage", bSync: true)
         ShowProgressMessage(anuserHUDmessage: "BPMS triggered.", anTimeInterval: TimeInterval(5))
     }
@@ -145,7 +146,7 @@ class ARScenekitViewController: UIViewController, ARSCNViewDelegate {
     }
     
     //To read the connectivity details from QR code response
-    func ReadConnectionDetails() {
+    /*func ReadConnectionDetails() {
         var dictionary:NSDictionary?
         print(_CurrentIoTDeviceToWatch)
         if let data = _CurrentIoTDeviceToWatch.data(using: String.Encoding.utf8) {
@@ -172,18 +173,18 @@ class ARScenekitViewController: UIViewController, ARSCNViewDelegate {
             oResStr = anEmitParam!
         }
         return oResStr;
-    }
+    }*/
     
     //To read device metrics
     @objc func ReadDisplayValueFromServer() {
         _timerCount = _timerCount + 1
         //print("Current timer count  \(_timerCount)")
-        print(" DeviceID : \(oDevID)")
+        print(" DeviceID : \(oJsonReaderUtility.oDevID)")
         /*print(" DeviceDataUrl : \(oDevDataUrl)")
          print(" UserName : \(oUsrName)")
          print(" Password : \(oPass)")
          print(" Previous Response : \(self._DeviceMetrics)")*/
-        self._DeviceMetrics = GetDeviceMetricsFromServer(anAccessURL: oDevDataUrl, anUserName: oUsrName, anPassword: oPass, bSync: true)
+        self._DeviceMetrics = GetDeviceMetricsFromServer(anAccessURL: oJsonReaderUtility.oDevDataUrl, anUserName: oJsonReaderUtility.oUsrName, anPassword: oJsonReaderUtility.oPass, bSync: true)
         
         if _DeviceMetrics.isEmpty {
             print("Value yet to assign")

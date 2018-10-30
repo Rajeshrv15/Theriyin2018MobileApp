@@ -10,13 +10,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Nikarin/ARScenekitViewController.swift"
-            timestampString = "562578416.099792"
+            timestampString = "562581656.516423"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "149"
-            endingLineNumber = "149"
-            landmarkName = "ReadConnectionDetails()"
-            landmarkType = "7">
+            startingLineNumber = "150"
+            endingLineNumber = "150"
+            landmarkName = "ARScenekitViewController"
+            landmarkType = "3">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -26,11 +26,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Nikarin/ARScenekitViewController.swift"
-            timestampString = "562578416.100266"
+            timestampString = "562581656.516881"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "271"
-            endingLineNumber = "271"
+            startingLineNumber = "272"
+            endingLineNumber = "272"
             landmarkName = "GetDeviceMetricsFromServer(anAccessURL:anUserName:anPassword:bSync:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -42,11 +42,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Nikarin/ARScenekitViewController.swift"
-            timestampString = "562578416.100553"
+            timestampString = "562581656.517169"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "93"
-            endingLineNumber = "93"
+            startingLineNumber = "94"
+            endingLineNumber = "94"
             landmarkName = "TriggerPrediction(_:)"
             landmarkType = "7">
          </BreakpointContent>
