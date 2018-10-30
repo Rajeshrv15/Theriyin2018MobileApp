@@ -80,7 +80,7 @@ class ViewControllerTwinLoad: UIViewController, ARSCNViewDelegate {
         let planeNode = SCNNode(geometry: plane)
         
         let x = CGFloat(planeAnchor.center.x)
-        let y = CGFloat(planeAnchor.center.y)
+        //_ = CGFloat(planeAnchor.center.y)
         let z = CGFloat(planeAnchor.center.z)
         planeNode.position = SCNVector3(x,0,z)
         planeNode.opacity = 0.15
