@@ -136,6 +136,25 @@ class NikarinUtility {
         return (sDisplayMetrics, sDisplayMessage)
     }
     
+    func GetSplitStringValue(stInput: String) -> String {
+        let splitTextArray = stInput.split(separator: ":")
+        let sRetString : String = String(splitTextArray[1])
+        return sRetString
+    }
+    
+    func GetRpmValue(stDisplayText : String) -> integer_t {
+        var sRetString : String = ""
+        var iRpm : integer_t = 0
+        let splitTextArray = stDisplayText.split(separator: ",")
+        splitTextArray.forEach { item in
+            if item.range(of: "Speed") != nil {
+                sRetString = GetSplitStringValue(stInput: String(item))
+            }
+        }
+        iRpm = integer_t(sRetString) ?? 0
+        return iRpm
+    }
+    
     //Read device metrics from Server URL
     func GetDeviceMetricsFromServer(anAccessURL : String, anUserName: String, anPassword: String, bSync: Bool) -> String {
         let config = URLSessionConfiguration.default

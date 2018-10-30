@@ -159,7 +159,7 @@ class ARScenekitViewController: UIViewController, ARSCNViewDelegate {
         var EmitParamsRes = oNikarinUtility.ReadEmittedParams(anInputStr: _DeviceMetrics)
         _sDisplayMessage = EmitParamsRes.anDispMsg
         _sDisplayMetrics = EmitParamsRes.anDispMetric
-                
+        
         if (_sDisplayMetrics == "")
         {
             _sDisplayMetrics = "Temperature:\(_timerCount),Speed:\(3429 + _timerCount),Sound:\(0.88 + Double(_timerCount))"
@@ -260,12 +260,12 @@ class ARScenekitViewController: UIViewController, ARSCNViewDelegate {
     
     func GetParamSpriteNode(strParamType: String, Circle: SKShapeNode) -> String {
         var sRetString : String = strParamType
-        if strParamType.range(of: "Temperature") != nil {
+        if strParamType.range(of: "Temperature") != nil {            
             let temperature = SKSpriteNode(imageNamed: "temperature-2-64_white")
             temperature.position = CGPoint(x: 90, y: 8)
             temperature.setScale(2)
             Circle.addChild(temperature)
-            let sTmpRetString = GetSplitStringValue(stInput: strParamType)
+            let sTmpRetString = oNikarinUtility.GetSplitStringValue(stInput: strParamType)
             sRetString = "\(sTmpRetString)'C"
         }
         if strParamType.range(of: "Speed") != nil {
@@ -273,21 +273,15 @@ class ARScenekitViewController: UIViewController, ARSCNViewDelegate {
             temperature.position = CGPoint(x: 90, y: 8)
             temperature.setScale(3.5)
             Circle.addChild(temperature)
-            sRetString = GetSplitStringValue(stInput: strParamType)
+            sRetString = oNikarinUtility.GetSplitStringValue(stInput: strParamType)
         }
         if strParamType.range(of: "Sound") != nil {
             let temperature = SKSpriteNode(imageNamed: "speaker-32")
             temperature.position = CGPoint(x: 90, y: 8)
             temperature.setScale(3)
             Circle.addChild(temperature)
-            sRetString = GetSplitStringValue(stInput: strParamType)
+            sRetString = oNikarinUtility.GetSplitStringValue(stInput: strParamType)
         }        
-        return sRetString
-    }
-    
-    func GetSplitStringValue(stInput: String) -> String {
-        let splitTextArray = stInput.split(separator: ":")
-        let sRetString : String = String(splitTextArray[1])
         return sRetString
     }
     
