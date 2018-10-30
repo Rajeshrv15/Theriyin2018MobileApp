@@ -15,7 +15,6 @@ class ViewControllerTwinLoad: UIViewController, ARSCNViewDelegate {
         
     @IBOutlet weak var scnDigitalTwin: ARSCNView!
     var _drillBitHolder : SCNNode?
-    var _ActionApplied : Bool = false
     
     //Current Device ID & end point details
     var oNikarinUtility: NikarinUtility = NikarinUtility()
