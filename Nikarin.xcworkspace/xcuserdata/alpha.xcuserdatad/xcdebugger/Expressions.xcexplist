@@ -3,18 +3,24 @@
    version = "1.0">
    <ContextStates>
       <ContextState
-         contextName = "ARScenekitViewController.GetDisplayMessageNode(skScene:):ARScenekitViewController.swift">
-         <PersistentStrings>
-            <PersistentString
-               value = "_sDisplayMessage">
-            </PersistentString>
-         </PersistentStrings>
+         contextName = "ARScenekitViewController.GetDeviceMetricsFromServer(anAccessURL:anUserName:anPassword:):ARScenekitViewController.swift">
       </ContextState>
       <ContextState
          contextName = "ARScenekitViewController.UpdateTextNode():ARScenekitViewController.swift">
          <PersistentStrings>
             <PersistentString
                value = "_sDisplayMetrics">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "ARScenekitViewController.ReadDisplayValueFromServer():ARScenekitViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "_sDisplayMetrics">
+            </PersistentString>
+            <PersistentString
+               value = "_sDisplayMessage">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -27,7 +33,12 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "ARScenekitViewController.GetDeviceMetricsFromServer(anAccessURL:anUserName:anPassword:):ARScenekitViewController.swift">
+         contextName = "ARScenekitViewController.GetDisplayMessageNode(skScene:):ARScenekitViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "_sDisplayMessage">
+            </PersistentString>
+         </PersistentStrings>
       </ContextState>
    </ContextStates>
 </VariablesViewState>

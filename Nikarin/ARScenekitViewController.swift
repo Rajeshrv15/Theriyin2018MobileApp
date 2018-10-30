@@ -18,13 +18,8 @@ class ARScenekitViewController: UIViewController, ARSCNViewDelegate {
     @IBOutlet weak var anSceneView: ARSCNView!
     
     //Current Device ID & end point details
-    var oJsonReaderUtility: JsonReaderUtility = JsonReaderUtility()
+    var oNikarinUtility: NikarinUtility = NikarinUtility()
     public var _CurrentIoTDeviceToWatch : String = "CodedDeviceId"
-    /*var oDevID : String = ""
-    var oDevDataUrl : String = ""
-    var oUsrName : String = ""
-    var oPass : String = ""
-    var oEmailIds : String = ""*/
     
     //Sceen Text to show _DeviceMetrics
     var _ParentNodeForTextNode : SCNNode!
@@ -64,8 +59,9 @@ class ARScenekitViewController: UIViewController, ARSCNViewDelegate {
         //self.anSceneView.session.run(configuration)
         self.anSceneView.delegate = self
         
-        oJsonReaderUtility._CurrentIoTDeviceToWatch = _CurrentIoTDeviceToWatch
-        oJsonReaderUtility.ReadConnectionDetails() //Read the connection details from QR code
+        //Read the connection details from QR code
+        oNikarinUtility._CurrentIoTDeviceToWatch = _CurrentIoTDeviceToWatch
+        oNikarinUtility.ReadConnectionDetails()
         
         timerReadFromServer = Timer.scheduledTimer(timeInterval: 3, target: self, selector: #selector(ReadDisplayValueFromServer), userInfo: nil, repeats: true)
         timerUpdateTextNode = Timer.scheduledTimer(timeInterval: 3, target: self, selector: #selector(UpdateTextNode), userInfo: nil, repeats: true)
@@ -89,15 +85,15 @@ class ARScenekitViewController: UIViewController, ARSCNViewDelegate {
     
     @IBAction func TriggerPrediction(_ sender: UIButton) {
         let sZemantisURL : String = "http://10.60.5.238:9083/adapars/apply/drill_pmml?record={\"RPM\": 2350,\"Temperature\": 52,\"Sound\": 3.2}"
-        let strZemantisResDict = GetDeviceMetricsFromServer(anAccessURL: sZemantisURL, anUserName: "Administrator", anPassword: "manage", bSync: true)
+        let strZemantisResDict = oNikarinUtility.GetDeviceMetricsFromServer(anAccessURL: sZemantisURL, anUserName: "Administrator", anPassword: "manage", bSync: true)
         print("Response received \(strZemantisResDict)")
-        let sUIVal = ReadValueFromDictionaryWithKey(dtInput: strZemantisResDict, stKey: "predicted_Maintenance")
+        let sUIVal = oNikarinUtility.ReadValueFromDictionaryWithKey(dtInput: strZemantisResDict, stKey: "predicted_Maintenance")
         ShowProgressMessage(anuserHUDmessage: "As per prediction maintenance required. \(sUIVal)", anTimeInterval: TimeInterval(5))
     }
     
     @IBAction func TriggerBPMN(_ sender: UIButton) {
-        let sBPMSURL : String = "http://10.60.5.238:5555/invoke/Service/CallRepairBPMS?DeviceID=2323456&DeviceName=Drill&Email=\(oJsonReaderUtility.oEmailIds)&EmailBody=Send Technician for the service"
-        let strBPMSResDict = GetDeviceMetricsFromServer(anAccessURL: sBPMSURL, anUserName: "Administrator", anPassword: "manage", bSync: true)
+        let sBPMSURL : String = "http://10.60.5.238:5555/invoke/Service/CallRepairBPMS?DeviceID=2323456&DeviceName=Drill&Email=\(oNikarinUtility.oEmailIds)&EmailBody=Send Technician for the service"
+        let strBPMSResDict = oNikarinUtility.GetDeviceMetricsFromServer(anAccessURL: sBPMSURL, anUserName: "Administrator", anPassword: "manage", bSync: true)
         ShowProgressMessage(anuserHUDmessage: "BPMS triggered.", anTimeInterval: TimeInterval(5))
     }
     
@@ -145,79 +141,25 @@ class ARScenekitViewController: UIViewController, ARSCNViewDelegate {
         dismiss(animated: true, completion: nil)
     }
     
-    //To read the connectivity details from QR code response
-    /*func ReadConnectionDetails() {
-        var dictionary:NSDictionary?
-        print(_CurrentIoTDeviceToWatch)
-        if let data = _CurrentIoTDeviceToWatch.data(using: String.Encoding.utf8) {
-            do {
-                dictionary = try JSONSerialization.jsonObject(with: data, options: []) as? [String:AnyObject] as NSDictionary?
-                if let myDictionary = dictionary
-                {
-                    oDevID = ReadContentString(dictInput: myDictionary, dictKey: "DeviceID")
-                    oDevDataUrl = ReadContentString(dictInput: myDictionary, dictKey: "DeviceDataUrl")
-                    oUsrName = ReadContentString(dictInput: myDictionary, dictKey: "UserName")
-                    oPass = ReadContentString(dictInput: myDictionary, dictKey: "Password")
-                    oEmailIds = ReadContentString(dictInput: myDictionary, dictKey: "MailIds")
-                }
-            } catch let error as NSError {
-                print(error)
-            }
-        }
-    }
-    
-    func ReadContentString(dictInput: NSDictionary, dictKey: String) -> String {
-        var oResStr = "NA"
-        let anEmitParam = dictInput.value(forKey: dictKey) as? String
-        if (anEmitParam != nil) {
-            oResStr = anEmitParam!
-        }
-        return oResStr;
-    }*/
-    
     //To read device metrics
     @objc func ReadDisplayValueFromServer() {
         _timerCount = _timerCount + 1
         //print("Current timer count  \(_timerCount)")
-        print(" DeviceID : \(oJsonReaderUtility.oDevID)")
+        print(" DeviceID : \(oNikarinUtility.oDevID)")
         /*print(" DeviceDataUrl : \(oDevDataUrl)")
          print(" UserName : \(oUsrName)")
          print(" Password : \(oPass)")
          print(" Previous Response : \(self._DeviceMetrics)")*/
-        self._DeviceMetrics = GetDeviceMetricsFromServer(anAccessURL: oJsonReaderUtility.oDevDataUrl, anUserName: oJsonReaderUtility.oUsrName, anPassword: oJsonReaderUtility.oPass, bSync: true)
+        self._DeviceMetrics = oNikarinUtility.GetDeviceMetricsFromServer(anAccessURL: oNikarinUtility.oDevDataUrl, anUserName: oNikarinUtility.oUsrName, anPassword: oNikarinUtility.oPass, bSync: true)
         
         if _DeviceMetrics.isEmpty {
             print("Value yet to assign")
             return
         }
-        var dictionary:NSDictionary?
-        _sDisplayMetrics = ""
-        _sDisplayMessage = ""
-        if let data = _DeviceMetrics.data(using: String.Encoding.utf8) {
-            do {
-                dictionary = try JSONSerialization.jsonObject(with: data, options: []) as? [String:AnyObject] as NSDictionary?
-                if let myDictionary = dictionary
-                {
-                    //print("DeviceID : \(myDictionary["DeviceID"] ?? "default DeviceID")")
-                    var anEmitParam = myDictionary.value(forKey: "DeviceEmittingParams") as? String
-                    if (anEmitParam != nil) {
-                        //print("DeviceEmittingParams 1 : \(self._sDisplayMessage)")
-                        //anEmitParam = "de1 \(_timerCount),de2 \(_timerCount),de3 \(_timerCount),de4 \(_timerCount)"
-                        self._sDisplayMetrics = anEmitParam!
-                    }
-                    anEmitParam = myDictionary.value(forKey: "DeviceEmittingMessage") as? String
-                    if (anEmitParam != nil) {
-                        //print("DeviceEmittingParams 1 : \(self._sDisplayMessage)")
-                        //anEmitParam = "de1 \(_timerCount),de2 \(_timerCount),de3 \(_timerCount),de4 \(_timerCount)"
-                        self._sDisplayMessage = anEmitParam!
-                    }
-                    //print("DeviceEmittingParams 2 : \(self._sDisplayMessage)")
-                }
-            } catch let error as NSError {
-                print(error)
-            }
-        }
-        
+        var EmitParamsRes = oNikarinUtility.ReadEmittedParams(anInputStr: _DeviceMetrics)
+        _sDisplayMessage = EmitParamsRes.anDispMsg
+        _sDisplayMetrics = EmitParamsRes.anDispMetric
+                
         if (_sDisplayMetrics == "")
         {
             _sDisplayMetrics = "Temperature:\(_timerCount),Speed:\(3429 + _timerCount),Sound:\(0.88 + Double(_timerCount))"
@@ -226,50 +168,6 @@ class ARScenekitViewController: UIViewController, ARSCNViewDelegate {
         {
             _sDisplayMessage = "Temperature execeeded the threshold."// coming from Nikarin platform based on the scanned device"
         }*/
-    }
-
-    
-    //Read device metrics from Server URL
-    func GetDeviceMetricsFromServer(anAccessURL : String, anUserName: String, anPassword: String, bSync: Bool) -> String {
-        let config = URLSessionConfiguration.default
-        var strResponse : String = ""
-        let anSem = DispatchSemaphore.init(value: 0)
-        
-        if (anAccessURL == nil || anAccessURL.isEmpty) {
-            return strResponse
-        }
-        
-        if (!anUserName.isEmpty && !anPassword.isEmpty) {
-            let userPasswordData = "\(anUserName):\(anPassword)".data(using: .utf8)
-            let base64EncodedCredential = userPasswordData!.base64EncodedString(options: Data.Base64EncodingOptions.init(rawValue: 0))
-            let authString = "Basic \(base64EncodedCredential)"
-            config.httpAdditionalHeaders = ["Authorization" : authString]
-        }
-        
-        //print("URL : " + anAccessURL)
-        let session = URLSession(configuration: config)
-        
-        let anUrl = URL(string: anAccessURL.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!)!
-        let anUrlRequest : URLRequest = URLRequest(url: anUrl)
-        var anResponse : String = ""
-        let anDataTsk = session.dataTask(with: anUrlRequest as URLRequest, completionHandler: { (data, response, error) -> Void in
-            guard error == nil else {
-                print(error?.localizedDescription ?? "")
-                return
-            }
-            anResponse = String(data: data!, encoding: .utf8)!
-            strResponse = anResponse
-            if bSync == true {
-                anSem.signal()
-            }
-            //self._DeviceMetrics = anResponse
-        })
-        anDataTsk.resume()
-        if bSync == true {
-            anSem.wait(timeout: .distantFuture)
-        }
-        //print("And I got this reponse : \(strResponse))")
-        return strResponse
     }
     
     @objc func UpdateTextNode() {
@@ -441,64 +339,6 @@ class ARScenekitViewController: UIViewController, ARSCNViewDelegate {
             self._oUserHUD.label.text = anuserHUDmessage
             self._oUserHUD.hide(animated: true, afterDelay: anTimeInterval)
         }
-    }
-    
-    func ReadValueFromDictionaryWithKey(dtInput : String, stKey : String) -> String {
-        
-        var stOutput : String = ""
-        if dtInput.isEmpty {
-            return stOutput
-        }
-        var dictionary:NSDictionary?
-        if let data = dtInput.data(using: String.Encoding.utf8) {
-            do {
-                dictionary = try JSONSerialization.jsonObject(with: data, options: []) as? [String:AnyObject] as NSDictionary?
-            } catch {
-                return ""
-            }
-            if let myDictionary = dictionary {
-                for (_, anValue) in myDictionary {
-                    if anValue is NSArray {
-                        let temp = anValue as AnyObject as! NSArray
-                        if temp != nil {
-                            //print ("am with array now !")
-                            temp.forEach { anitem in
-                                let anDict:NSDictionary = (anitem as! [String:AnyObject] as NSDictionary?)!
-                                if anDict != nil {
-                                    for(_, _) in anDict {
-                                        let anOutput = anDict.value(forKey: stKey) as? String
-                                        if (anOutput != nil) {
-                                            stOutput = anOutput!
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                    else
-                    {
-                        let anOutput = myDictionary.value(forKey: stKey) as? String
-                        if (anOutput != nil) {
-                            stOutput = anOutput!
-                        }
-                    }
-                }
-            }
-            
-            /*do {
-                dictionary = try JSONSerialization.jsonObject(with: data, options: []) as? [String:AnyObject] as NSDictionary?
-                if let myDictionary = dictionary
-                {
-                    let anOutput = myDictionary.value(forKey: stKey) as? String
-                    if (anOutput != nil) {
-                        stOutput = anOutput!
-                    }
-                }
-            } catch let error as NSError {
-                print(error)
-            }*/
-        }
-        return stOutput
     }
 }
 
