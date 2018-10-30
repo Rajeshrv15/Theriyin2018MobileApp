@@ -23,6 +23,7 @@ class ARScenekitViewController: UIViewController, ARSCNViewDelegate {
     var oDevDataUrl : String = ""
     var oUsrName : String = ""
     var oPass : String = ""
+    var oEmailIds : String = ""
     
     //Sceen Text to show _DeviceMetrics
     var _ParentNodeForTextNode : SCNNode!
@@ -94,8 +95,8 @@ class ARScenekitViewController: UIViewController, ARSCNViewDelegate {
     }
     
     @IBAction func TriggerBPMN(_ sender: UIButton) {
-        let sBPMSURL : String = "http://10.60.5.238:5555/invoke/Service/CallRepairBPMS?DeviceID=2323456&DeviceName=Drill&Email=rrad@softwareag.com&EmailBody=Send Technician for the service"
-        //let strBPMSResDict = GetDeviceMetricsFromServer(anAccessURL: sBPMSURL, anUserName: "Administrator", anPassword: "manage", bSync: true)
+        let sBPMSURL : String = "http://10.60.5.238:5555/invoke/Service/CallRepairBPMS?DeviceID=2323456&DeviceName=Drill&Email=\(oEmailIds)&EmailBody=Send Technician for the service"
+        let strBPMSResDict = GetDeviceMetricsFromServer(anAccessURL: sBPMSURL, anUserName: "Administrator", anPassword: "manage", bSync: true)
         ShowProgressMessage(anuserHUDmessage: "BPMS triggered.", anTimeInterval: TimeInterval(5))
     }
     
@@ -156,6 +157,7 @@ class ARScenekitViewController: UIViewController, ARSCNViewDelegate {
                     oDevDataUrl = ReadContentString(dictInput: myDictionary, dictKey: "DeviceDataUrl")
                     oUsrName = ReadContentString(dictInput: myDictionary, dictKey: "UserName")
                     oPass = ReadContentString(dictInput: myDictionary, dictKey: "Password")
+                    oEmailIds = ReadContentString(dictInput: myDictionary, dictKey: "MailIds")
                 }
             } catch let error as NSError {
                 print(error)
