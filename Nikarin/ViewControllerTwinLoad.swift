@@ -12,17 +12,16 @@ import ARKit
 import SceneKit
 
 class ViewControllerTwinLoad: UIViewController, ARSCNViewDelegate {
-    
-    
+        
     @IBOutlet weak var scnDigitalTwin: ARSCNView!
     var _drillBitHolder : SCNNode?
     var _ActionApplied : Bool = false
     
-    @IBAction func CloseView(_ sender: Any) {
-        dismiss(animated: true, completion: nil)
-    }
+    //Current Device ID & end point details
+    var oNikarinUtility: NikarinUtility = NikarinUtility()
+    public var _CurrentIoTDeviceToWatch : String = "CodedDeviceId"
     
-    
+    var timerReadFromServer: Timer!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,16 +34,15 @@ class ViewControllerTwinLoad: UIViewController, ARSCNViewDelegate {
         
         scnDigitalTwin.debugOptions = [ARSCNDebugOptions.showFeaturePoints]
         
+        //Read the connection details from QR code
+        oNikarinUtility._CurrentIoTDeviceToWatch = _CurrentIoTDeviceToWatch
+        oNikarinUtility.ReadConnectionDetails()
+        
+        timerReadFromServer = Timer.scheduledTimer(timeInterval: 3, target: self, selector: #selector(ReadDisplayValueFromServer), userInfo: nil, repeats: true)
+        
         //Get Tapgesture
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(ViewControllerTwinLoad.addTwinImageToScene(withGestureRecognizer:)))
         scnDigitalTwin.addGestureRecognizer(tapGestureRecognizer)
-        
-        /*// Create a new scene
-        let scene = SCNScene(named: "DTwins.scnassets/DrillingMachingTwin.dae")!
-        // Set the scene to the view
-        scnDigitalTwin.scene = scene*/
-  
-
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -91,20 +89,38 @@ class ViewControllerTwinLoad: UIViewController, ARSCNViewDelegate {
         node.addChildNode(planeNode)
     }
     
-    @IBAction func ApplyAction(_ sender: UIButton) {
+    //To read device metrics
+    @objc func ReadDisplayValueFromServer() {
+        print(" DeviceID : \(oNikarinUtility.oDevID)")
+        let DeviceMetrics = oNikarinUtility.GetDeviceMetricsFromServer(anAccessURL: oNikarinUtility.oDevDataUrl, anUserName: oNikarinUtility.oUsrName, anPassword: oNikarinUtility.oPass, bSync: true)
+        
+        if DeviceMetrics.isEmpty {
+            print("Value yet to assign")
+            return
+        }
+        let EmitParamsRes = oNikarinUtility.ReadEmittedParams(anInputStr: DeviceMetrics)
+        let DisplayMetrics = EmitParamsRes.anDispMetric
+        //print("Metric received \(DisplayMetrics)")
+        if (DisplayMetrics == "")
+        {
+            return
+        }
+        let iRPM : integer_t = oNikarinUtility.GetRpmValue(stDisplayText: DisplayMetrics)
+        ApplyAction(iRPMVal: iRPM)
+    }
+    
+    func ApplyAction(iRPMVal : integer_t) {
         
         if _drillBitHolder == nil {
             return
         }
         
-        if _ActionApplied == false {
+        if iRPMVal > 0 {
             let anloop = SCNAction.repeatForever(SCNAction.rotateBy(x: 1, y: 0, z: 0, duration: 0.1))
             _drillBitHolder?.runAction(anloop)
-            _ActionApplied = true
         }
         else {
             _drillBitHolder?.removeAllActions()
-            _ActionApplied = false
         }
     }
     
@@ -132,5 +148,9 @@ class ViewControllerTwinLoad: UIViewController, ARSCNViewDelegate {
         _drillBitHolder = twinImgScene.rootNode.childNode(withName: "AnSpinWheelRoot", recursively: true)!
         shipNode.position = SCNVector3(translation.x, translation.y, translation.z)
         scnDigitalTwin.scene.rootNode.addChildNode(shipNode)
+    }
+    
+    @IBAction func CloseView(_ sender: Any) {
+        dismiss(animated: true, completion: nil)
     }
 }

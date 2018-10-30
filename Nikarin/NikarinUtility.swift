@@ -20,7 +20,7 @@ class NikarinUtility {
     //To read the connectivity details from QR code response
     func ReadConnectionDetails() {
         var dictionary:NSDictionary?
-        print(_CurrentIoTDeviceToWatch)
+        print("Received Device Identity : \(_CurrentIoTDeviceToWatch)")
         if let data = _CurrentIoTDeviceToWatch.data(using: String.Encoding.utf8) {
             do {
                 dictionary = try JSONSerialization.jsonObject(with: data, options: []) as? [String:AnyObject] as NSDictionary?
@@ -125,7 +125,7 @@ class NikarinUtility {
                     if (anEmitParam != nil) {
                         //print("DeviceEmittingParams 1 : \(self._sDisplayMessage)")
                         //anEmitParam = "de1 \(_timerCount),de2 \(_timerCount),de3 \(_timerCount),de4 \(_timerCount)"
-                        sDisplayMetrics = anEmitParam!
+                        sDisplayMessage = anEmitParam!
                     }
                     //print("DeviceEmittingParams 2 : \(self._sDisplayMessage)")
                 }
@@ -151,6 +151,7 @@ class NikarinUtility {
                 sRetString = GetSplitStringValue(stInput: String(item))
             }
         }
+        //print(sRetString)
         iRpm = integer_t(sRetString) ?? 0
         return iRpm
     }

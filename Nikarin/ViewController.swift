@@ -55,13 +55,21 @@ class ViewController: UIViewController, QRViewControllerDelegate {
         if let destination = segue.destination as? QRViewController {
             destination.delegate = self
         }
-        if segue.identifier == "AnShowDeviceData" {
+        if (segue.identifier == "AnShowDeviceData")  {
             guard let destinationVC = segue.destination as? ARScenekitViewController else {
                 //print("Nee neikiera sender nan illai " + segue.debugDescription)
                 return
             }
             destinationVC._CurrentIoTDeviceToWatch = self._anQRString
         }
+        if (segue.identifier == "AnShowDigitalTwin" )  {
+            guard let destinationVC = segue.destination as? ViewControllerTwinLoad else {
+                //print("Nee neikiera sender nan illai " + segue.debugDescription)
+                return
+            }
+            destinationVC._CurrentIoTDeviceToWatch = self._anQRString
+        }
+        
     }
     
 }

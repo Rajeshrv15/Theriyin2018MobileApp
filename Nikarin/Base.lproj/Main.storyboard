@@ -187,39 +187,13 @@
                                     <action selector="OnCloseClick:" destination="YI7-97-lOI" eventType="touchUpInside" id="9ev-d3-9qa"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1ql-hr-IpB">
-                                <rect key="frame" x="40" y="992" width="120" height="60"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="120" id="jbb-mR-Pqv"/>
-                                    <constraint firstAttribute="height" constant="60" id="kjI-9y-z5O"/>
-                                    <constraint firstAttribute="width" constant="120" id="w4u-rt-tRr"/>
-                                </constraints>
-                                <state key="normal">
-                                    <attributedString key="attributedTitle">
-                                        <fragment content="Action">
-                                            <attributes>
-                                                <font key="NSFont" size="24" name="Arial-BoldMT"/>
-                                                <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                                            </attributes>
-                                        </fragment>
-                                    </attributedString>
-                                </state>
-                                <connections>
-                                    <action selector="ApplyAction:" destination="tE1-Ru-whY" eventType="touchUpInside" id="Sx4-UE-gbp"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="1ql-hr-IpB" firstAttribute="leading" secondItem="N05-in-8uO" secondAttribute="leading" constant="40" id="KJR-rg-rsN"/>
-                            <constraint firstItem="N05-in-8uO" firstAttribute="bottom" secondItem="1ql-hr-IpB" secondAttribute="bottom" constant="60" id="PmO-yw-Ow0"/>
                             <constraint firstItem="nJj-oS-0iW" firstAttribute="top" secondItem="dCv-Gp-5Nh" secondAttribute="top" id="Wue-78-ftu"/>
-                            <constraint firstItem="1ql-hr-IpB" firstAttribute="leading" secondItem="N05-in-8uO" secondAttribute="leading" constant="40" id="Zwa-Wp-TJR"/>
-                            <constraint firstItem="1ql-hr-IpB" firstAttribute="leading" secondItem="N05-in-8uO" secondAttribute="leading" constant="40" id="anB-wo-XwM"/>
                             <constraint firstItem="nJj-oS-0iW" firstAttribute="leading" secondItem="N05-in-8uO" secondAttribute="leading" id="eRY-4B-h11"/>
                             <constraint firstItem="nJj-oS-0iW" firstAttribute="bottom" secondItem="N05-in-8uO" secondAttribute="bottom" id="sno-de-cW8"/>
                             <constraint firstItem="nJj-oS-0iW" firstAttribute="trailing" secondItem="N05-in-8uO" secondAttribute="trailing" id="swK-Lq-b8j"/>
-                            <constraint firstItem="N05-in-8uO" firstAttribute="bottom" secondItem="1ql-hr-IpB" secondAttribute="bottom" constant="60" id="vET-Wz-hhm"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="N05-in-8uO"/>
                     </view>
