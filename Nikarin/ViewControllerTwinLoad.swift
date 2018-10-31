@@ -42,6 +42,10 @@ class ViewControllerTwinLoad: UIViewController, ARSCNViewDelegate {
         //Get Tapgesture
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(ViewControllerTwinLoad.addTwinImageToScene(withGestureRecognizer:)))
         scnDigitalTwin.addGestureRecognizer(tapGestureRecognizer)
+        
+        //Setup lightings 
+        setupAmbientLight()
+        setupOmniDirectionalLight()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -147,6 +151,28 @@ class ViewControllerTwinLoad: UIViewController, ARSCNViewDelegate {
         _drillBitHolder = twinImgScene.rootNode.childNode(withName: "AnSpinWheelRoot", recursively: true)!
         shipNode.position = SCNVector3(translation.x, translation.y, translation.z)
         scnDigitalTwin.scene.rootNode.addChildNode(shipNode)
+    }
+    
+    private func setupAmbientLight() {
+        // setup ambient light source
+        let ambientLightNode = SCNNode()
+        ambientLightNode.light = SCNLight()
+        ambientLightNode.light!.type = SCNLight.LightType.ambient
+        ambientLightNode.light!.color = UIColor(white: 0.53, alpha: 1.0).cgColor
+        scnDigitalTwin.scene.rootNode.addChildNode(ambientLightNode)
+    }
+    
+    private func setupOmniDirectionalLight() {
+        // initialize noe
+        let omniLightNode = SCNNode()
+        // assign light
+        omniLightNode.light = SCNLight()
+        // set type
+        omniLightNode.light!.type = SCNLight.LightType.omni
+        // color and position
+        omniLightNode.light!.color = UIColor(white: 0.56, alpha: 1.0).cgColor
+        omniLightNode.position = SCNVector3Make(0.0, 2000.0, 0.0)
+        scnDigitalTwin.scene.rootNode.addChildNode(omniLightNode)
     }
     
     @IBAction func CloseView(_ sender: Any) {
