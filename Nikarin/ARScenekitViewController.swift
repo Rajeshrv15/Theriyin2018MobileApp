@@ -54,7 +54,7 @@ class ARScenekitViewController: UIViewController, ARSCNViewDelegate {
         // Set the scene to the view
         anSceneView.scene = scene
         
-        //self.anSceneView.debugOptions = [ARSCNDebugOptions.showFeaturePoints, ARSCNDebugOptions.showWorldOrigin]
+        self.anSceneView.debugOptions = [ARSCNDebugOptions.showFeaturePoints]//, ARSCNDebugOptions.showWorldOrigin]
         self.anSceneView.showsStatistics = false
         //self.anSceneView.session.run(configuration)
         self.anSceneView.delegate = self
@@ -113,9 +113,8 @@ class ARScenekitViewController: UIViewController, ARSCNViewDelegate {
     
     func renderer(_ renderer: SCNSceneRenderer, didAdd node: SCNNode, for anchor: ARAnchor) {
         if #available(iOS 12.0, *) {
-            if anchor is ARObjectAnchor {
-                //print ("Object detected \(node)")
-                ShowProgressMessage(anuserHUDmessage: "Scanned object detected...", anTimeInterval: TimeInterval(1))
+            if anchor is ARObjectAnchor {                
+                ShowProgressMessage(anuserHUDmessage: "Scanned object \(String(describing: anchor.name)) detected...", anTimeInterval: TimeInterval(1))
                 _ParentNodeForTextNode = node
                 _ParentNodeAnchor = anchor as? ARObjectAnchor
             }
