@@ -221,6 +221,12 @@ class CollabViewController: UIViewController, ARSessionDelegate, ARSCNViewDelega
     
     
     @IBAction func btnClose(_ sender: Any) {
+        let playPauseBtn = sender as! UIButton
+        playPauseBtn.press(completion:{ finish in
+            if finish {
+                print("animation ended")
+            }
+        })
         dismiss(animated: true, completion: nil)
     }
 }
