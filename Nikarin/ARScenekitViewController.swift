@@ -171,7 +171,8 @@ class ARScenekitViewController: UIViewController, ARSCNViewDelegate {
         
         if (_sDisplayMetrics == "")
         {
-            _sDisplayMetrics = "Temperature:\(_timerCount),Speed:\(3429 + _timerCount),Sound:\(0.88 + Double(_timerCount))"
+            //_sDisplayMetrics = "Temperature:\(_timerCount),Speed:\(3429 + _timerCount),Sound:\(0.88 + Double(_timerCount))"
+            _sDisplayMetrics = "Temperature:\(_timerCount),Vibration:\(12 + _timerCount),Smoke:\(88 + Double(_timerCount))"
         }
         /*if (_sDisplayMessage == "")
         {
@@ -269,29 +270,40 @@ class ARScenekitViewController: UIViewController, ARSCNViewDelegate {
     
     func GetParamSpriteNode(strParamType: String, Circle: SKShapeNode) -> String {
         var sRetString : String = strParamType
-        if strParamType.range(of: "Temperature") != nil {            
-            let temperature = SKSpriteNode(imageNamed: "temperature-2-64_white")
-            temperature.position = CGPoint(x: 90, y: 8)
-            temperature.setScale(2)
+        if strParamType.range(of: "Temperature") != nil {
+            let temperature = GetScnNodeWithImage(stImageName: "temperature-2-64_white", stScaleVal: 2.0)
             Circle.addChild(temperature)
             let sTmpRetString = oNikarinUtility.GetSplitStringValue(stInput: strParamType)
             sRetString = "\(sTmpRetString)'C"
         }
         if strParamType.range(of: "Speed") != nil {
-            let temperature = SKSpriteNode(imageNamed: "speedometer-32")
-            temperature.position = CGPoint(x: 90, y: 8)
-            temperature.setScale(3.5)
-            Circle.addChild(temperature)
+            let speed = GetScnNodeWithImage(stImageName: "speedometer-32", stScaleVal: 3.5)
+            Circle.addChild(speed)
             sRetString = oNikarinUtility.GetSplitStringValue(stInput: strParamType)
         }
         if strParamType.range(of: "Sound") != nil {
-            let temperature = SKSpriteNode(imageNamed: "speaker-32")
-            temperature.position = CGPoint(x: 90, y: 8)
-            temperature.setScale(3)
-            Circle.addChild(temperature)
+            let sound = GetScnNodeWithImage(stImageName: "speaker-32", stScaleVal: 3.0)
+            Circle.addChild(sound)
             sRetString = oNikarinUtility.GetSplitStringValue(stInput: strParamType)
-        }        
+        }
+        if strParamType.range(of: "Smoke") != nil {
+            let smoke = GetScnNodeWithImage(stImageName: "Smoke-32-white", stScaleVal: 3.5)
+            Circle.addChild(smoke)
+            sRetString = oNikarinUtility.GetSplitStringValue(stInput: strParamType)
+        }
+        if strParamType.range(of: "Vibration") != nil {
+            let vibration = GetScnNodeWithImage(stImageName: "Vibration-32-white", stScaleVal: 3.0)
+            Circle.addChild(vibration)
+            sRetString = oNikarinUtility.GetSplitStringValue(stInput: strParamType)
+        }
         return sRetString
+    }
+    
+    func GetScnNodeWithImage(stImageName: String, stScaleVal: CGFloat) -> SKSpriteNode {
+        let skDisplayNode = SKSpriteNode(imageNamed: stImageName)
+        skDisplayNode.position = CGPoint(x: 90, y: 8)
+        skDisplayNode.setScale(stScaleVal)
+        return skDisplayNode
     }
     
     func GetDisplayMessageNode(skScene : SKScene) -> SKSpriteNode {
