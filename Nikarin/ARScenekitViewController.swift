@@ -79,11 +79,15 @@ class ARScenekitViewController: UIViewController, ARSCNViewDelegate {
             print("Object resource loaded...")
         } else {
             // Fallback on earlier versions
-        }
-        
+        }        
     }
     
     @IBAction func TriggerPrediction(_ sender: UIButton) {
+        sender.press(completion:{ finish in
+            if finish {
+                print("animation ended - TriggerPrediction")
+            }
+        })
         let sZemantisURL : String = "http://10.60.5.238:9083/adapars/apply/drill_pmml?record={\"RPM\": 2350,\"Temperature\": 52,\"Sound\": 3.2}"
         let strZemantisResDict = oNikarinUtility.GetDeviceMetricsFromServer(anAccessURL: sZemantisURL, anUserName: "Administrator", anPassword: "manage", bSync: true)
         print("Response received \(strZemantisResDict)")
@@ -92,6 +96,11 @@ class ARScenekitViewController: UIViewController, ARSCNViewDelegate {
     }
     
     @IBAction func TriggerBPMN(_ sender: UIButton) {
+        sender.press(completion:{ finish in
+            if finish {
+                print("animation ended - TriggerBPMN")
+            }
+        })
         let sBPMSURL : String = "http://10.60.5.238:5555/invoke/Service/CallRepairBPMS?DeviceID=2323456&DeviceName=Drill&Email=\(oNikarinUtility.oEmailIds)&EmailBody=Send Technician for the service"
         let strBPMSResDict = oNikarinUtility.GetDeviceMetricsFromServer(anAccessURL: sBPMSURL, anUserName: "Administrator", anPassword: "manage", bSync: true)
         ShowProgressMessage(anuserHUDmessage: "BPMS triggered.", anTimeInterval: TimeInterval(5))
