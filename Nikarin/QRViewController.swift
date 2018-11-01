@@ -132,7 +132,6 @@ class QRViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate
      */
     
     @IBAction func OnQRViewClose(_ sender: UIButton) {
-        
         dismiss(animated: true, completion: nil)
     }
 }

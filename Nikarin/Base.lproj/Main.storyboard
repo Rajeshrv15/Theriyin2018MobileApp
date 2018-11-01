@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="ipad10_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -22,7 +22,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </stackView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="feJ-TV-IAL">
-                                <rect key="frame" x="302" y="347" width="233" height="72"/>
+                                <rect key="frame" x="300" y="347" width="220" height="72"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" image="GotoArrow-28-64">
                                     <attributedString key="attributedTitle">
@@ -30,79 +30,7 @@
                                             <attributes>
                                                 <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <font key="NSFont" size="24" name="ArialNarrow-Bold"/>
-                                                <paragraphStyle key="NSParagraphStyle" alignment="justified" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                                            </attributes>
-                                        </fragment>
-                                    </attributedString>
-                                </state>
-                                <connections>
-                                    <action selector="onLoadQRReader:" destination="BYZ-38-t0r" eventType="touchUpInside" id="3sL-J5-7yG"/>
-                                </connections>
-                            </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZHT-he-B4h">
-                                <rect key="frame" x="300" y="239" width="387" height="100"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <attributedString key="attributedText">
-                                    <fragment content="Nikarin">
-                                        <attributes>
-                                            <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                            <font key="NSFont" size="72" name="Arial-BoldMT"/>
-                                        </attributes>
-                                    </fragment>
-                                </attributedString>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="NikarinPageIcon-512" translatesAutoresizingMaskIntoConstraints="NO" id="dQW-tJ-khd">
-                                <rect key="frame" x="162" y="225" width="118" height="114"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="IdW-zX-A8m">
-                                <rect key="frame" x="313" y="442" width="314" height="58"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" image="GotoArrow-28-64">
-                                    <attributedString key="attributedTitle">
-                                        <fragment content="     Read Device Data">
-                                            <attributes>
-                                                <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <font key="NSFont" size="24" name="ArialNarrow-Bold"/>
-                                                <paragraphStyle key="NSParagraphStyle" alignment="justified" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                                            </attributes>
-                                        </fragment>
-                                    </attributedString>
-                                </state>
-                                <connections>
-                                    <action selector="onReadDeviceData:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Ns8-tX-OrA"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4dA-by-Wf5">
-                                <rect key="frame" x="309" y="531" width="314" height="58"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" image="GotoArrow-28-64">
-                                    <attributedString key="attributedTitle">
-                                        <fragment content="     Load Digital Twin">
-                                            <attributes>
-                                                <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <font key="NSFont" size="24" name="ArialNarrow-Bold"/>
-                                                <paragraphStyle key="NSParagraphStyle" alignment="justified" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                                            </attributes>
-                                        </fragment>
-                                    </attributedString>
-                                </state>
-                                <connections>
-                                    <action selector="onLoadDigitalTwin:" destination="BYZ-38-t0r" eventType="touchUpInside" id="QV3-nm-dtY"/>
-                                    <action selector="onReadDeviceData:" destination="BYZ-38-t0r" eventType="touchUpInside" id="8KW-ej-wfv"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleAspectFit" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="awU-oj-Ob6">
-                                <rect key="frame" x="320" y="620" width="180" height="58"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" image="GotoArrow-28-64">
-                                    <attributedString key="attributedTitle">
-                                        <fragment content="     Collab">
-                                            <attributes>
-                                                <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <font key="NSFont" size="24" name="ArialNarrow-Bold"/>
-                                                <paragraphStyle key="NSParagraphStyle" alignment="justified" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO">
+                                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO">
                                                     <tabStops>
                                                         <textTab alignment="left" location="28">
                                                             <options/>
@@ -147,7 +75,181 @@
                                     </attributedString>
                                 </state>
                                 <connections>
+                                    <action selector="onLoadQRReader:" destination="BYZ-38-t0r" eventType="touchUpInside" id="3sL-J5-7yG"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZHT-he-B4h">
+                                <rect key="frame" x="300" y="239" width="387" height="100"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <attributedString key="attributedText">
+                                    <fragment content="Nikarin">
+                                        <attributes>
+                                            <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <font key="NSFont" size="72" name="Arial-BoldMT"/>
+                                        </attributes>
+                                    </fragment>
+                                </attributedString>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="NikarinPageIcon-512" translatesAutoresizingMaskIntoConstraints="NO" id="dQW-tJ-khd">
+                                <rect key="frame" x="162" y="225" width="118" height="114"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="IdW-zX-A8m">
+                                <rect key="frame" x="300" y="442" width="320" height="58"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" image="GotoArrow-28-64">
+                                    <attributedString key="attributedTitle">
+                                        <fragment content="     Read Device Data">
+                                            <attributes>
+                                                <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <font key="NSFont" size="24" name="ArialNarrow-Bold"/>
+                                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                            </attributes>
+                                        </fragment>
+                                    </attributedString>
+                                </state>
+                                <connections>
+                                    <action selector="onReadDeviceData:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Ns8-tX-OrA"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4dA-by-Wf5">
+                                <rect key="frame" x="309" y="531" width="300" height="58"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" image="GotoArrow-28-64">
+                                    <attributedString key="attributedTitle">
+                                        <fragment content="     Load Digital Twin">
+                                            <attributes>
+                                                <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <font key="NSFont" size="24" name="ArialNarrow-Bold"/>
+                                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                            </attributes>
+                                        </fragment>
+                                    </attributedString>
+                                </state>
+                                <connections>
+                                    <action selector="onLoadDigitalTwin:" destination="BYZ-38-t0r" eventType="touchUpInside" id="QV3-nm-dtY"/>
+                                    <action selector="onReadDeviceData:" destination="BYZ-38-t0r" eventType="touchUpInside" id="8KW-ej-wfv"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleAspectFit" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="awU-oj-Ob6">
+                                <rect key="frame" x="245" y="620" width="320" height="58"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" image="GotoArrow-28-64">
+                                    <attributedString key="attributedTitle">
+                                        <fragment content="     Collab">
+                                            <attributes>
+                                                <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <font key="NSFont" size="24" name="ArialNarrow-Bold"/>
+                                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO"/>
+                                            </attributes>
+                                        </fragment>
+                                    </attributedString>
+                                </state>
+                                <connections>
                                     <action selector="onLoadCollab:" destination="BYZ-38-t0r" eventType="touchUpInside" id="JyZ-AI-Y7P"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleAspectFit" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="NuY-Hk-FHF">
+                                <rect key="frame" x="310" y="715" width="320" height="64"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" image="GotoArrow-28-64">
+                                    <attributedString key="attributedTitle">
+                                        <fragment content="     ">
+                                            <attributes>
+                                                <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <font key="NSFont" size="24" name="ArialNarrow-Bold"/>
+                                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO">
+                                                    <tabStops>
+                                                        <textTab alignment="left" location="28">
+                                                            <options/>
+                                                        </textTab>
+                                                        <textTab alignment="left" location="56">
+                                                            <options/>
+                                                        </textTab>
+                                                        <textTab alignment="left" location="84">
+                                                            <options/>
+                                                        </textTab>
+                                                        <textTab alignment="left" location="112">
+                                                            <options/>
+                                                        </textTab>
+                                                        <textTab alignment="left" location="140">
+                                                            <options/>
+                                                        </textTab>
+                                                        <textTab alignment="left" location="168">
+                                                            <options/>
+                                                        </textTab>
+                                                        <textTab alignment="left" location="196">
+                                                            <options/>
+                                                        </textTab>
+                                                        <textTab alignment="left" location="224">
+                                                            <options/>
+                                                        </textTab>
+                                                        <textTab alignment="left" location="252">
+                                                            <options/>
+                                                        </textTab>
+                                                        <textTab alignment="left" location="280">
+                                                            <options/>
+                                                        </textTab>
+                                                        <textTab alignment="left" location="308">
+                                                            <options/>
+                                                        </textTab>
+                                                        <textTab alignment="left" location="336">
+                                                            <options/>
+                                                        </textTab>
+                                                    </tabStops>
+                                                </paragraphStyle>
+                                            </attributes>
+                                        </fragment>
+                                        <fragment content="Load Training Twin">
+                                            <attributes>
+                                                <font key="NSFont" size="24" name="ArialNarrow-Bold"/>
+                                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO">
+                                                    <tabStops>
+                                                        <textTab alignment="left" location="28">
+                                                            <options/>
+                                                        </textTab>
+                                                        <textTab alignment="left" location="56">
+                                                            <options/>
+                                                        </textTab>
+                                                        <textTab alignment="left" location="84">
+                                                            <options/>
+                                                        </textTab>
+                                                        <textTab alignment="left" location="112">
+                                                            <options/>
+                                                        </textTab>
+                                                        <textTab alignment="left" location="140">
+                                                            <options/>
+                                                        </textTab>
+                                                        <textTab alignment="left" location="168">
+                                                            <options/>
+                                                        </textTab>
+                                                        <textTab alignment="left" location="196">
+                                                            <options/>
+                                                        </textTab>
+                                                        <textTab alignment="left" location="224">
+                                                            <options/>
+                                                        </textTab>
+                                                        <textTab alignment="left" location="252">
+                                                            <options/>
+                                                        </textTab>
+                                                        <textTab alignment="left" location="280">
+                                                            <options/>
+                                                        </textTab>
+                                                        <textTab alignment="left" location="308">
+                                                            <options/>
+                                                        </textTab>
+                                                        <textTab alignment="left" location="336">
+                                                            <options/>
+                                                        </textTab>
+                                                    </tabStops>
+                                                </paragraphStyle>
+                                            </attributes>
+                                        </fragment>
+                                    </attributedString>
+                                </state>
+                                <connections>
+                                    <action selector="onLoadTwinAnimation:" destination="BYZ-38-t0r" eventType="touchUpInside" id="6Jn-9P-QbW"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -159,6 +261,7 @@
                         <segue destination="vdI-o2-03j" kind="show" identifier="AnShowQRReader" id="764-It-XJj"/>
                         <segue destination="tE1-Ru-whY" kind="show" identifier="AnShowDigitalTwin" id="f1n-Ss-otV"/>
                         <segue destination="5Xb-zh-pXL" kind="showDetail" identifier="AnShowCollab" id="4dY-Sw-wGU"/>
+                        <segue destination="Uht-Bi-JFR" kind="showDetail" identifier="AnShowDigitalTwinTraining" id="06T-OY-TIe"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -231,6 +334,60 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sn9-5s-j63" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="955.39568345323744" y="594.60431654676256"/>
+        </scene>
+        <!--View Controller Twin Animation-->
+        <scene sceneID="MKf-Ub-JUL">
+            <objects>
+                <viewController id="Uht-Bi-JFR" customClass="ViewControllerTwinAnimation" customModule="Nikarin" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="GDl-ed-mPK">
+                        <rect key="frame" x="0.0" y="0.0" width="834" height="1112"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <arscnView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Trm-kT-2Mv">
+                                <rect key="frame" x="0.0" y="0.0" width="834" height="1112"/>
+                            </arscnView>
+                            <button opaque="NO" contentMode="scaleAspectFit" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bW5-zr-vgE">
+                                <rect key="frame" x="780" y="50" width="27" height="27"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" image="Black-x-mark-64"/>
+                                <connections>
+                                    <action selector="clickClose:" destination="Uht-Bi-JFR" eventType="touchUpInside" id="Pgo-Of-d6t"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleAspectFit" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wHe-Qw-PcZ">
+                                <rect key="frame" x="500" y="50" width="48" height="48"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" image="refresh-64"/>
+                                <connections>
+                                    <action selector="clickRefresh:" destination="Uht-Bi-JFR" eventType="touchUpInside" id="zdQ-0q-36L"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleAspectFit" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eBK-bf-CkU">
+                                <rect key="frame" x="745" y="1023" width="48" height="48"/>
+                                <state key="normal" image="media-step-forward-64"/>
+                                <connections>
+                                    <action selector="clickNextStep:" destination="Uht-Bi-JFR" eventType="touchUpInside" id="hoN-wk-QFU"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="AkY-UK-Fqo" firstAttribute="trailing" secondItem="eBK-bf-CkU" secondAttribute="trailing" constant="25" id="7Fp-co-HLi"/>
+                            <constraint firstItem="AkY-UK-Fqo" firstAttribute="trailing" secondItem="Trm-kT-2Mv" secondAttribute="trailing" id="7OK-sP-Gdd"/>
+                            <constraint firstItem="AkY-UK-Fqo" firstAttribute="bottom" secondItem="eBK-bf-CkU" secondAttribute="bottom" constant="25" id="Hy5-jG-tSb"/>
+                            <constraint firstItem="Trm-kT-2Mv" firstAttribute="leading" secondItem="AkY-UK-Fqo" secondAttribute="leading" id="MDK-nG-OeO"/>
+                            <constraint firstItem="AkY-UK-Fqo" firstAttribute="bottom" secondItem="Trm-kT-2Mv" secondAttribute="bottom" id="veJ-rs-akf"/>
+                            <constraint firstItem="Trm-kT-2Mv" firstAttribute="top" secondItem="AkY-UK-Fqo" secondAttribute="top" id="zKz-NE-rQt"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="AkY-UK-Fqo"/>
+                    </view>
+                    <connections>
+                        <outlet property="scnViewAnimation" destination="Trm-kT-2Mv" id="zMt-Zt-iFJ"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="hLx-mq-vru" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="116.54676258992806" y="-651.25899280575538"/>
         </scene>
         <!--Scenekit View Controller-->
         <scene sceneID="T6Y-22-5lu">
@@ -306,12 +463,12 @@
                                     <action selector="btnClose:" destination="5Xb-zh-pXL" eventType="touchUpInside" id="SrV-b4-bzt"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0eK-Iw-QB0">
-                                <rect key="frame" x="745" y="1023" width="64" height="64"/>
+                            <button opaque="NO" contentMode="scaleAspectFit" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0eK-Iw-QB0">
+                                <rect key="frame" x="745" y="1023" width="48" height="48"/>
                                 <state key="normal" image="brush-2-64"/>
                             </button>
                             <button opaque="NO" contentMode="scaleAspectFit" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CQc-eI-iMe" customClass="RoundedButton" customModule="Nikarin" customModuleProvider="target">
-                                <rect key="frame" x="492" y="50" width="64" height="64"/>
+                                <rect key="frame" x="492" y="50" width="48" height="48"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" image="save-64"/>
                                 <connections>
@@ -320,7 +477,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleAspectFit" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AnB-mn-ZVT">
-                                <rect key="frame" x="350" y="50" width="64" height="64"/>
+                                <rect key="frame" x="350" y="50" width="48" height="48"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" image="download-2-64"/>
                                 <connections>
@@ -361,6 +518,8 @@
         <image name="ZementisPredict" width="64" height="64"/>
         <image name="brush-2-64" width="64" height="64"/>
         <image name="download-2-64" width="64" height="64"/>
+        <image name="media-step-forward-64" width="64" height="64"/>
+        <image name="refresh-64" width="64" height="64"/>
         <image name="save-64" width="64" height="64"/>
     </resources>
 </document>

@@ -45,6 +45,10 @@ class ViewController: UIViewController, QRViewControllerDelegate {
         performSegue(withIdentifier: "AnShowCollab", sender: self)
     }
     
+    @IBAction func onLoadTwinAnimation(_ sender: UIButton) {
+        performSegue(withIdentifier: "AnShowDigitalTwinTraining", sender: self)
+    }
+    
     func finishPassing(string: String) {
         self._anQRString = string
         //print("Received from QR Reader : " + self._anQRString)
