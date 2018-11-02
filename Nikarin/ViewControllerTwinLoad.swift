@@ -21,6 +21,12 @@ class ViewControllerTwinLoad: UIViewController, ARSCNViewDelegate {
     public var _CurrentIoTDeviceToWatch : String = "CodedDeviceId"
     
     var timerReadFromServer: Timer!
+    var timerUpdateTextNode: Timer!
+    
+    var _twinTranslationlocation: simd_float4!
+    var _ParentNodeForTextNode : SCNNode!
+    var _sDisplayMetrics : String!
+    var _sDisplayMessage : String!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,6 +44,7 @@ class ViewControllerTwinLoad: UIViewController, ARSCNViewDelegate {
         oNikarinUtility.ReadConnectionDetails()
         
         timerReadFromServer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(ReadDisplayValueFromServer), userInfo: nil, repeats: true)
+        timerUpdateTextNode = Timer.scheduledTimer(timeInterval: 3, target: self, selector: #selector(UpdateTextNode), userInfo: nil, repeats: true)
         
         //Get Tapgesture
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(ViewControllerTwinLoad.addTwinImageToScene(withGestureRecognizer:)))
@@ -92,6 +99,96 @@ class ViewControllerTwinLoad: UIViewController, ARSCNViewDelegate {
         node.addChildNode(planeNode)
     }
     
+    @objc func UpdateTextNode() {
+        if _ParentNodeForTextNode == nil {
+            return
+        }
+        if _sDisplayMetrics == nil {
+            print("i am returning")
+            return
+        }
+        
+        if _ParentNodeForTextNode != nil && _ParentNodeForTextNode.childNodes.count > 0 {
+            _ParentNodeForTextNode.childNodes .forEach { item in
+                if item.name == "anSCNTextNodes" {
+                    item.removeFromParentNode()
+                }
+            }
+        }
+        
+        let lstSCNNodes = GetIndividualSpiteTextNode(stDisplayText: self._sDisplayMetrics)
+        if lstSCNNodes.count == 0 {
+            return
+        }
+        
+        var iYPosition = 0.0
+        lstSCNNodes .forEach { item in
+            item.position = SCNVector3(_twinTranslationlocation.x, Float(iYPosition), _twinTranslationlocation.z - Float(0.1))
+            item.name = "anSCNTextNodes"
+            _ParentNodeForTextNode.addChildNode(item)
+            iYPosition = iYPosition + 0.015
+        }
+
+    }
+    
+    func GetIndividualSpiteTextNode(stDisplayText: String) -> Array<SCNNode> {
+        
+        var lstSCNodesText = [SCNNode()]
+        let splitTextArray = stDisplayText.split(separator: ",")
+        
+        var iXPosition = CGFloat(5)
+        
+        let skScene = SKScene(size:CGSize(width: 1600, height: 800))
+        skScene.scaleMode = .aspectFit
+        skScene.shouldEnableEffects = true
+        skScene.backgroundColor = UIColor.clear
+        skScene.blendMode = .alpha
+        
+        splitTextArray.forEach { item in
+            iXPosition = iXPosition + skScene.frame.minX + CGFloat(350)
+            
+            let Circle = SKShapeNode(circleOfRadius: 150 ) // Size of Circle = Radius setting.
+            Circle.position = CGPoint(x:iXPosition,y:200)
+            Circle.name = "defaultCircle"
+            Circle.strokeColor = UIColor.black
+            Circle.glowWidth = 1.0
+            Circle.fillColor = UIColor.black
+            Circle.yScale=Circle.yScale * -1
+            
+            let dispStr = oNikarinUtility.GetParamSpriteNode(strParamType: String(item), Circle: Circle)
+            
+            let label = SKLabelNode(fontNamed:"ArialMT")
+            label.text = String(dispStr)
+            label.position = CGPoint(x: 18, y: 0)
+            label.horizontalAlignmentMode = .right
+            label.verticalAlignmentMode = .center
+            label.fontSize =  72
+            label.fontColor = UIColor.white
+            
+            /*box.addChild(label)
+             skScene.addChild(box)*/
+            
+            Circle.addChild(label)
+            skScene.addChild(Circle)
+            
+            //iYPosition = iYPosition + 100
+        }
+        
+        if _sDisplayMessage != nil && _sDisplayMessage != ""{
+            let textNode = oNikarinUtility.GetDisplayMessageNode(skScene: skScene, sDisplayMessage: _sDisplayMessage)
+            skScene.addChild(textNode)
+        }
+        
+        let plane = SCNPlane(width: CGFloat(0.4), height: CGFloat(0.2))
+        plane.firstMaterial!.diffuse.contents = skScene
+        let finalDisplayNode = SCNNode(geometry: plane)
+        lstSCNodesText.append(finalDisplayNode)
+        
+        return lstSCNodesText
+    }
+    
+    
+    
     //To read device metrics
     @objc func ReadDisplayValueFromServer() {
         print(" DeviceID : \(oNikarinUtility.oDevID)")
@@ -102,14 +199,20 @@ class ViewControllerTwinLoad: UIViewController, ARSCNViewDelegate {
             return
         }
         let EmitParamsRes = oNikarinUtility.ReadEmittedParams(anInputStr: DeviceMetrics)
-        let DisplayMetrics = EmitParamsRes.anDispMetric
+        _sDisplayMetrics = EmitParamsRes.anDispMetric
+        _sDisplayMessage = EmitParamsRes.anDispMsg
         //print("Metric received \(DisplayMetrics)")
-        if (DisplayMetrics == "")
+        if (_sDisplayMetrics == "")
         {
             return
         }
-        let iRPM : integer_t = oNikarinUtility.GetRpmValue(stDisplayText: DisplayMetrics)
+        let iRPM : integer_t = oNikarinUtility.GetRpmValue(stDisplayText: _sDisplayMetrics)
         ApplyAction(iRPMVal: iRPM)
+        
+        /*if (_sDisplayMessage == "")
+        {
+            _sDisplayMessage = "Temperature execeeded the threshold."// coming from Nikarin platform based on the scanned device"
+        }*/
     }
     
     func ApplyAction(iRPMVal : integer_t) {
@@ -137,7 +240,7 @@ class ViewControllerTwinLoad: UIViewController, ARSCNViewDelegate {
         guard let hitTestResult = hitTestResults.first else {
             //print ("hittestresults else returned")
             return }
-        let translation = hitTestResult.worldTransform.columns.3
+        _twinTranslationlocation = hitTestResult.worldTransform.columns.3
         
         guard let twinImgScene = SCNScene(named: "DTwins.scnassets/DrillingMachingTwin.dae"),
             let shipNode = twinImgScene.rootNode.childNode(withName: "SketchUp", recursively: false)
@@ -149,8 +252,9 @@ class ViewControllerTwinLoad: UIViewController, ARSCNViewDelegate {
         
         //Drill bit's holder rotation
         _drillBitHolder = twinImgScene.rootNode.childNode(withName: "AnSpinWheelRoot", recursively: true)!
-        shipNode.position = SCNVector3(translation.x, translation.y, translation.z)
+        shipNode.position = SCNVector3(_twinTranslationlocation.x, _twinTranslationlocation.y, _twinTranslationlocation.z)
         scnDigitalTwin.scene.rootNode.addChildNode(shipNode)
+        _ParentNodeForTextNode = scnDigitalTwin.scene.rootNode
     }
     
     private func setupAmbientLight() {

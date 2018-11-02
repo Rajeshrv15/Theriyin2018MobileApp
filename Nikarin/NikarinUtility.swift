@@ -7,6 +7,8 @@
 //
 
 import Foundation
+import ARKit
+import SceneKit
 
 class NikarinUtility {
     
@@ -199,4 +201,83 @@ class NikarinUtility {
         return strResponse
     }
     
+    func GetParamSpriteNode(strParamType: String, Circle: SKShapeNode) -> String {
+        var sRetString : String = strParamType
+        if strParamType.range(of: "Temperature") != nil {
+            let temperature = GetScnNodeWithImage(stImageName: "temperature-2-64_white", stScaleVal: 2.0)
+            Circle.addChild(temperature)
+            let sTmpRetString = GetSplitStringValue(stInput: strParamType)
+            sRetString = "\(sTmpRetString)'C"
+        }
+        if strParamType.range(of: "Speed") != nil {
+            let speed = GetScnNodeWithImage(stImageName: "speedometer-32", stScaleVal: 3.5)
+            Circle.addChild(speed)
+            sRetString = GetSplitStringValue(stInput: strParamType)
+        }
+        if strParamType.range(of: "Sound") != nil {
+            let sound = GetScnNodeWithImage(stImageName: "speaker-32", stScaleVal: 3.0)
+            Circle.addChild(sound)
+            sRetString = GetSplitStringValue(stInput: strParamType)
+        }
+        if strParamType.range(of: "Smoke") != nil {
+            let smoke = GetScnNodeWithImage(stImageName: "Smoke-32-white", stScaleVal: 3.5)
+            Circle.addChild(smoke)
+            sRetString = GetSplitStringValue(stInput: strParamType)
+        }
+        if strParamType.range(of: "Vibration") != nil {
+            let vibration = GetScnNodeWithImage(stImageName: "Vibration-32-white", stScaleVal: 3.0)
+            Circle.addChild(vibration)
+            sRetString = GetSplitStringValue(stInput: strParamType)
+        }
+        return sRetString
+    }
+    
+    func GetScnNodeWithImage(stImageName: String, stScaleVal: CGFloat) -> SKSpriteNode {
+        let skDisplayNode = SKSpriteNode(imageNamed: stImageName)
+        skDisplayNode.position = CGPoint(x: 90, y: 8)
+        skDisplayNode.setScale(stScaleVal)
+        return skDisplayNode
+    }
+    
+    func GetDisplayMessageNode(skScene : SKScene, sDisplayMessage: String) -> SKSpriteNode {
+        let iYPosition = 250
+        let box = SKSpriteNode(color: UIColor.clear, size: CGSize(width: 1900, height: 450))
+        
+        //to show in row
+        //box.position = CGPoint(x: skScene.frame.minX + CGFloat(355) , y: skScene.frame.minY + (box.size.height/2) + CGFloat(iYPosition))
+        box.position = CGPoint(x: 0 , y: skScene.frame.minY + (box.size.height/2) + CGFloat(iYPosition))
+        //to show in column
+        //box.position = CGPoint(x: CGFloat(iXPosition), y: skScene.frame.minY + (box.size.height/2))
+        //box.position = CGPoint(x: CGFloat(iXPosition), y: skScene.frame.minY + CGFloat(25))
+        box.yScale=box.yScale * -1
+        //box.anchorPoint = CGPoint(x:0, y: 0.5)
+        
+        let label = SKLabelNode(fontNamed:"ArialMT")
+        label.text = String(sDisplayMessage)
+        label.position = CGPoint(x: box.position.x + CGFloat(850), y: -72)
+        label.numberOfLines = 2
+        label.preferredMaxLayoutWidth = 1500
+        //label.horizontalAlignmentMode = .left
+        //label.verticalAlignmentMode = .center
+        label.fontSize =  80
+        label.fontColor = UIColor.red
+        
+        let f0 = SKTexture.init(imageNamed: "alert-64")
+        let f1 = SKTexture.init(imageNamed: "alert-blank")
+        let f2 = SKTexture.init(imageNamed: "alert-64")
+        let frames: [SKTexture] = [f0, f1, f2]
+        
+        let alertIcon = SKSpriteNode(imageNamed: "alert-64")
+        alertIcon.position = CGPoint(x: -box.position.x + CGFloat(72) , y:0)
+        alertIcon.setScale(2)
+        
+        // Change the frame per 0.2 sec
+        let animation = SKAction.animate(with: frames, timePerFrame: 0.2)
+        alertIcon.run(SKAction.repeatForever(animation))
+        
+        box.addChild(alertIcon)
+        box.addChild(label)
+        
+        return box
+    }
 }
