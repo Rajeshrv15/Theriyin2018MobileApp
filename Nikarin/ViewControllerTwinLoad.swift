@@ -37,7 +37,7 @@ class ViewControllerTwinLoad: UIViewController, ARSCNViewDelegate {
         oNikarinUtility._CurrentIoTDeviceToWatch = _CurrentIoTDeviceToWatch
         oNikarinUtility.ReadConnectionDetails()
         
-        timerReadFromServer = Timer.scheduledTimer(timeInterval: 3, target: self, selector: #selector(ReadDisplayValueFromServer), userInfo: nil, repeats: true)
+        timerReadFromServer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(ReadDisplayValueFromServer), userInfo: nil, repeats: true)
         
         //Get Tapgesture
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(ViewControllerTwinLoad.addTwinImageToScene(withGestureRecognizer:)))

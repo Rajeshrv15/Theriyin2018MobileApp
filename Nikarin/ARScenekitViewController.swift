@@ -173,10 +173,10 @@ class ARScenekitViewController: UIViewController, ARSCNViewDelegate {
             //_sDisplayMetrics = "Temperature:\(_timerCount),Speed:\(3429 + _timerCount),Sound:\(0.88 + Double(_timerCount))"
             _sDisplayMetrics = "Sound:\(_timerCount),Vibration:\(12 + _timerCount),Smoke:\(88 + Double(_timerCount))"
         }
-        /*if (_sDisplayMessage == "")
+        if (_sDisplayMessage == "")
         {
             _sDisplayMessage = "Temperature execeeded the threshold."// coming from Nikarin platform based on the scanned device"
-        }*/
+        }
     }
     
     @objc func UpdateTextNode() {
@@ -326,7 +326,7 @@ class ARScenekitViewController: UIViewController, ARSCNViewDelegate {
         //label.horizontalAlignmentMode = .left
         //label.verticalAlignmentMode = .center
         label.fontSize =  80
-        label.fontColor = UIColor.black
+        label.fontColor = UIColor.red
         
         let f0 = SKTexture.init(imageNamed: "alert-64")
         let f1 = SKTexture.init(imageNamed: "alert-blank")
