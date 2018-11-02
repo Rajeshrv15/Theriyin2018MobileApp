@@ -16,7 +16,8 @@ class ViewController: UIViewController, QRViewControllerDelegate {
         super.viewDidLoad()
         
         UIGraphicsBeginImageContext(self.view.frame.size)
-        UIImage(named: "TileBackground")?.draw(in: self.view.bounds)
+        //UIImage(named: "TileBackground")?.draw(in: self.view.bounds)
+        UIImage(named: "ARBackground")?.draw(in: self.view.bounds)
         let image: UIImage = UIGraphicsGetImageFromCurrentImageContext()!
         UIGraphicsEndImageContext()
         self.view.backgroundColor = UIColor(patternImage: image)
