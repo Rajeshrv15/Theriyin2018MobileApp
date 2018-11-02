@@ -22,14 +22,14 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </stackView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="feJ-TV-IAL">
-                                <rect key="frame" x="300" y="347" width="220" height="72"/>
+                                <rect key="frame" x="282" y="983" width="270" height="45"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" image="GotoArrow-28-64">
+                                <state key="normal" image="GotoArrow-28-32">
                                     <attributedString key="attributedTitle">
-                                        <fragment content="     Read QR">
+                                        <fragment content="     Read Nikarin Identity">
                                             <attributes>
                                                 <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <font key="NSFont" size="24" name="ArialNarrow-Bold"/>
+                                                <font key="NSFont" size="18" name="ArialNarrow-Bold"/>
                                                 <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO"/>
                                             </attributes>
                                         </fragment>
@@ -44,14 +44,14 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="IdW-zX-A8m">
-                                <rect key="frame" x="300" y="442" width="320" height="58"/>
+                                <rect key="frame" x="-42" y="828" width="320" height="45"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" image="GotoArrow-28-64">
+                                <state key="normal" image="GotoArrow-28-32">
                                     <attributedString key="attributedTitle">
-                                        <fragment content="     Read Device Data">
+                                        <fragment content="     Device Metrics">
                                             <attributes>
                                                 <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <font key="NSFont" size="24" name="ArialNarrow-Bold"/>
+                                                <font key="NSFont" size="18" name="ArialNarrow-Bold"/>
                                                 <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                             </attributes>
                                         </fragment>
@@ -62,14 +62,14 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4dA-by-Wf5">
-                                <rect key="frame" x="309" y="531" width="300" height="58"/>
+                                <rect key="frame" x="564" y="828" width="300" height="45"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" image="GotoArrow-28-64">
+                                <state key="normal" image="GotoArrow-28-32">
                                     <attributedString key="attributedTitle">
-                                        <fragment content="     Load Digital Twin">
+                                        <fragment content="     Digital Twin">
                                             <attributes>
                                                 <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <font key="NSFont" size="24" name="ArialNarrow-Bold"/>
+                                                <font key="NSFont" size="18" name="ArialNarrow-Bold"/>
                                                 <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                             </attributes>
                                         </fragment>
@@ -80,15 +80,28 @@
                                     <action selector="onReadDeviceData:" destination="BYZ-38-t0r" eventType="touchUpInside" id="8KW-ej-wfv"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleAspectFit" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="awU-oj-Ob6">
-                                <rect key="frame" x="245" y="620" width="320" height="58"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZHT-he-B4h">
+                                <rect key="frame" x="178" y="47" width="387" height="100"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" image="GotoArrow-28-64">
+                                <attributedString key="attributedText">
+                                    <fragment content="Nikarin">
+                                        <attributes>
+                                            <color key="NSColor" red="0.95294117647058818" green="0.95686274509803926" blue="0.96078431372549022" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <font key="NSFont" size="72" name="Arial-BoldMT"/>
+                                        </attributes>
+                                    </fragment>
+                                </attributedString>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleAspectFit" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="awU-oj-Ob6">
+                                <rect key="frame" x="-59" y="902" width="320" height="45"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" image="GotoArrow-28-32">
                                     <attributedString key="attributedTitle">
-                                        <fragment content="     Collab">
+                                        <fragment content="     Collaborate">
                                             <attributes>
-                                                <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <font key="NSFont" size="24" name="ArialNarrow-Bold"/>
+                                                <color key="NSColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                                <font key="NSFont" size="18" name="ArialNarrow-Bold"/>
                                                 <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO"/>
                                             </attributes>
                                         </fragment>
@@ -99,20 +112,20 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleAspectFit" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="NuY-Hk-FHF">
-                                <rect key="frame" x="310" y="715" width="320" height="64"/>
+                                <rect key="frame" x="564" y="902" width="320" height="45"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" image="GotoArrow-28-64">
+                                <state key="normal" image="GotoArrow-28-32">
                                     <attributedString key="attributedTitle">
                                         <fragment content="     ">
                                             <attributes>
                                                 <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <font key="NSFont" size="24" name="ArialNarrow-Bold"/>
+                                                <font key="NSFont" size="18" name="ArialNarrow-Bold"/>
                                                 <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO"/>
                                             </attributes>
                                         </fragment>
-                                        <fragment content="Load Training Twin">
+                                        <fragment content="Training Twin">
                                             <attributes>
-                                                <font key="NSFont" size="24" name="ArialNarrow-Bold"/>
+                                                <font key="NSFont" size="18" name="ArialNarrow-Bold"/>
                                                 <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO"/>
                                             </attributes>
                                         </fragment>
@@ -122,19 +135,6 @@
                                     <action selector="onLoadTwinAnimation:" destination="BYZ-38-t0r" eventType="touchUpInside" id="6Jn-9P-QbW"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZHT-he-B4h">
-                                <rect key="frame" x="178" y="47" width="387" height="100"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <attributedString key="attributedText">
-                                    <fragment content="Nikarin">
-                                        <attributes>
-                                            <color key="NSColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                            <font key="NSFont" size="72" name="Arial-BoldMT"/>
-                                        </attributes>
-                                    </fragment>
-                                </attributedString>
-                                <nil key="highlightedColor"/>
-                            </label>
                         </subviews>
                         <color key="backgroundColor" cocoaTouchSystemColor="lightTextColor"/>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
@@ -395,7 +395,7 @@
     <resources>
         <image name="BPMSProcess" width="64" height="64"/>
         <image name="Black-x-mark-64" width="64" height="64"/>
-        <image name="GotoArrow-28-64" width="64" height="64"/>
+        <image name="GotoArrow-28-32" width="32" height="32"/>
         <image name="NikarinPageIcon-512-white" width="512" height="512"/>
         <image name="White-x-mark-64" width="64" height="64"/>
         <image name="ZementisPredict" width="64" height="64"/>
