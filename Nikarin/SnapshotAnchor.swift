@@ -97,7 +97,7 @@ extension CGImagePropertyOrientation {
 
 extension UIButton {
     func press(completion:@escaping ((Bool) -> Void)) {
-        UIView.animate(withDuration: 0.2, animations: {
+        UIView.animate(withDuration: 0.8, animations: {
             self.transform = CGAffineTransform(scaleX: 0.5, y: 0.5) }, completion: { (finish: Bool) in
                 UIView.animate(withDuration: 0.1, animations: {
                     self.transform = CGAffineTransform.identity
