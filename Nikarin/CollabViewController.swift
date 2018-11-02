@@ -49,7 +49,7 @@ class CollabViewController: UIViewController, ARSessionDelegate, ARSCNViewDelega
         scnViewCollab.delegate = self
         
         // Show statistics such as fps and timing information
-        scnViewCollab.showsStatistics = true
+        scnViewCollab.showsStatistics = false
     }
     
     override func viewDidAppear(_ animated: Bool) {
