@@ -127,6 +127,12 @@ class ViewControllerTwinAnimation: UIViewController, ARSCNViewDelegate {
         
         if _iNodeCounter < anEngineNodes.count { return }
         
+        sender.press(completion:{ finish in
+            if finish {
+                print("animation ended - refresh")
+            }
+        })
+        
         let iPostition:Double = -5.0
         var iPosActual:Double = 20.0
         anEngineNodes.forEach { item in
@@ -144,11 +150,6 @@ class ViewControllerTwinAnimation: UIViewController, ARSCNViewDelegate {
         
         _iNodeCounter = 0
         
-        sender.press(completion:{ finish in
-            if finish {
-                print("animation ended - refresh")
-            }
-        })
     }
     
     @IBAction func clickNextStep(_ sender: UIButton) {
