@@ -92,7 +92,7 @@ class ARScenekitViewController: UIViewController, ARSCNViewDelegate {
         let strZemantisResDict = oNikarinUtility.GetDeviceMetricsFromServer(anAccessURL: sZemantisURL, anUserName: "Administrator", anPassword: "manage", bSync: true)
         print("Response received \(strZemantisResDict)")
         let sUIVal = oNikarinUtility.ReadValueFromDictionaryWithKey(dtInput: strZemantisResDict, stKey: "predicted_Maintenance")
-        ShowProgressMessage(anuserHUDmessage: "As per prediction maintenance required. \(sUIVal)", anTimeInterval: TimeInterval(5))
+        ShowProgressMessage(anuserHUDmessage: "As per prediction maintenance is required. \(sUIVal)", anTimeInterval: TimeInterval(5))
     }
     
     @IBAction func TriggerBPMN(_ sender: UIButton) {
@@ -103,7 +103,7 @@ class ARScenekitViewController: UIViewController, ARSCNViewDelegate {
         })
         let sBPMSURL : String = "http://10.60.5.238:5555/invoke/Service/CallRepairBPMS?DeviceID=2323456&DeviceName=Drill&Email=\(oNikarinUtility.oEmailIds)&EmailBody=Send Technician for the service"
         let strBPMSResDict = oNikarinUtility.GetDeviceMetricsFromServer(anAccessURL: sBPMSURL, anUserName: "Administrator", anPassword: "manage", bSync: true)
-        ShowProgressMessage(anuserHUDmessage: "BPMS triggered.", anTimeInterval: TimeInterval(5))
+        ShowProgressMessage(anuserHUDmessage: "Process triggered.", anTimeInterval: TimeInterval(5))
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -271,6 +271,7 @@ class ARScenekitViewController: UIViewController, ARSCNViewDelegate {
         DispatchQueue.main.async {
             self._oUserHUD = MBProgressHUD.showAdded(to: self.view, animated: true)
             self._oUserHUD.label.text = anuserHUDmessage
+            self._oUserHUD.label.font = UIFont(name: "ArialMT", size: 24)
             self._oUserHUD.hide(animated: true, afterDelay: anTimeInterval)
         }
     }

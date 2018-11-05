@@ -355,7 +355,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" image="save-64"/>
                                 <connections>
-                                    <action selector="ToAnimateWhenTouched:" destination="5Xb-zh-pXL" eventType="touchDown" id="pbG-Wn-hFU"/>
+                                    <!--<action selector="ToAnimateWhenTouched:" destination="5Xb-zh-pXL" eventType="touchDown" id="pbG-Wn-hFU"/>-->
                                     <action selector="clickSaveScene:" destination="5Xb-zh-pXL" eventType="touchUpInside" id="qbw-Oi-hrO"/>
                                 </connections>
                             </button>
@@ -364,7 +364,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" image="download-2-64"/>
                                 <connections>
-                                    <action selector="ToAnimateWhenTouched:" destination="5Xb-zh-pXL" eventType="touchDown" id="tYv-5M-Q5o"/>
+                                    <!--<action selector="ToAnimateWhenTouched:" destination="5Xb-zh-pXL" eventType="touchDown" id="tYv-5M-Q5o"/>-->
                                     <action selector="clickLoadScene:" destination="5Xb-zh-pXL" eventType="touchUpInside" id="Jkz-dr-i2n"/>
                                 </connections>
                             </button>

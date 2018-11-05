@@ -152,6 +152,11 @@ class CollabViewController: UIViewController, ARSessionDelegate, ARSCNViewDelega
     
     
     @IBAction func clickSaveScene(_ sender: UIButton) {
+        sender.press(completion:{ finish in
+            if finish {
+                print("animation ended - clickSaveScene")
+            }
+        })
         scnViewCollab.session.getCurrentWorldMap { worldMap, error in
             guard let map = worldMap
                 else { self.showAlert(title: "Can't get current world map", message: error!.localizedDescription); return }
@@ -172,6 +177,11 @@ class CollabViewController: UIViewController, ARSessionDelegate, ARSCNViewDelega
     
     
     @IBAction func clickLoadScene(_ sender: UIButton) {
+        sender.press(completion:{ finish in
+            if finish {
+                print("animation ended - clickLoadScene")
+            }
+        })
         let worldMap: ARWorldMap = {
             guard let data = mapDataFromFile
                 else { fatalError("Map data should already be verified to exist before Load button is enabled.") }
@@ -192,33 +202,7 @@ class CollabViewController: UIViewController, ARSessionDelegate, ARSCNViewDelega
         scnViewCollab.session.run(configuration, options: [.resetTracking, .removeExistingAnchors])
         
         print("Loaded anchor")
-    }
-    
-    
-    @IBAction func ToAnimateWhenTouched(_ sender: UIButton) {
-        UIButton.animate(withDuration: 0.2,
-          animations: {
-            sender.transform = CGAffineTransform(scaleX: 0.5, y: 0.5)
-          },
-          completion: { finish in
-            UIButton.animate(withDuration: 0.5, animations: {
-            sender.transform = CGAffineTransform.identity
-          })
-        })
-    }
-    
-    @IBAction func ToAnimateWhenTouchedDownload(_ sender: UIButton) {
-        UIButton.animate(withDuration: 0.2,
-           animations: {
-             sender.transform = CGAffineTransform(scaleX: 0.5, y: 0.5)
-        },
-           completion: { finish in
-             UIButton.animate(withDuration: 0.5, animations: {
-             sender.transform = CGAffineTransform.identity
-            })
-        })
-    }
-    
+    }    
     
     @IBAction func btnClose(_ sender: Any) {
         let playPauseBtn = sender as! UIButton

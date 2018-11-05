@@ -101,6 +101,10 @@ extension UIButton {
             self.transform = CGAffineTransform(scaleX: 0.5, y: 0.5) }, completion: { (finish: Bool) in
                 UIView.animate(withDuration: 0.1, animations: {
                     self.transform = CGAffineTransform.identity
+                    //self.imageView?.alpha = 0.1
+                    //self.imageView?.backgroundColor = UIColor.green
+                    //self.transform = CGAffineTransform.init(rotationAngle: CGFloat.pi)
+                    //self.tintColor = UIColor.red
                     completion(finish)
                 })
         })
