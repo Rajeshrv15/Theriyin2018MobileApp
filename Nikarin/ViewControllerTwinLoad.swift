@@ -19,6 +19,7 @@ class ViewControllerTwinLoad: UIViewController, ARSCNViewDelegate {
     //Current Device ID & end point details
     var oNikarinUtility: NikarinUtility = NikarinUtility()
     public var _CurrentIoTDeviceToWatch : String = "CodedDeviceId"
+    public var _LoadHumanTwin : Bool = false
     
     var timerReadFromServer: Timer!
     var timerUpdateTextNode: Timer!
@@ -53,6 +54,8 @@ class ViewControllerTwinLoad: UIViewController, ARSCNViewDelegate {
         //Setup lightings 
         setupAmbientLight()
         setupOmniDirectionalLight()
+        
+        print("Current view to load _LoadHumanTwin \(_LoadHumanTwin))")
     }
     
     override func viewWillAppear(_ animated: Bool) {

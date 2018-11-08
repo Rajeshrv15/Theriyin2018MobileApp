@@ -11,6 +11,7 @@ import UIKit
 class ViewController: UIViewController, QRViewControllerDelegate {
     
     var _anQRString : String = "QRText"
+    var _loadHuman : Bool = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,6 +40,7 @@ class ViewController: UIViewController, QRViewControllerDelegate {
     }
     
     @IBAction func onLoadDigitalTwin(_ sender: UIButton) {
+        _loadHuman = false
         performSegue(withIdentifier: "AnShowDigitalTwin", sender: self)
     }
     
@@ -49,6 +51,12 @@ class ViewController: UIViewController, QRViewControllerDelegate {
     @IBAction func onLoadTwinAnimation(_ sender: UIButton) {
         performSegue(withIdentifier: "AnShowDigitalTwinTraining", sender: self)
     }
+    
+    @IBAction func onLoadHumanTwin(_ sender: UIButton) {
+        _loadHuman = true
+        performSegue(withIdentifier: "AnShowDigitalTwin", sender: self)
+    }
+    
     
     func finishPassing(string: String) {
         self._anQRString = string
@@ -73,6 +81,7 @@ class ViewController: UIViewController, QRViewControllerDelegate {
                 return
             }
             destinationVC._CurrentIoTDeviceToWatch = self._anQRString
+            destinationVC._LoadHumanTwin = self._loadHuman
         }
         
     }
