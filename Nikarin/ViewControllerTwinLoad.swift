@@ -103,6 +103,12 @@ class ViewControllerTwinLoad: UIViewController, ARSCNViewDelegate {
     }
     
     @objc func UpdateTextNode() {
+        
+        if _LoadHumanTwin == true {
+            print ("Loading Human twin so am not required - returning !")
+            return
+        }
+        
         if _ParentNodeForTextNode == nil {
             return
         }
@@ -245,7 +251,12 @@ class ViewControllerTwinLoad: UIViewController, ARSCNViewDelegate {
             return }
         _twinTranslationlocation = hitTestResult.worldTransform.columns.3
         
-        guard let twinImgScene = SCNScene(named: "DTwins.scnassets/DrillingMachingTwin.dae"),
+        var strSceneName = "DTwins.scnassets/DrillingMachingTwin.dae"
+        if _LoadHumanTwin == true {
+            strSceneName = "DTwins.scnassets/HumanModel.dae"
+        }
+        
+        guard let twinImgScene = SCNScene(named: strSceneName),
             let shipNode = twinImgScene.rootNode.childNode(withName: "SketchUp", recursively: false)
             else {
                 //print("ship.scn return")
@@ -254,7 +265,12 @@ class ViewControllerTwinLoad: UIViewController, ARSCNViewDelegate {
         //print ("adding node here")
         
         //Drill bit's holder rotation
-        _drillBitHolder = twinImgScene.rootNode.childNode(withName: "AnSpinWheelRoot", recursively: true)!
+        if _LoadHumanTwin == false {
+            _drillBitHolder = twinImgScene.rootNode.childNode(withName: "AnSpinWheelRoot", recursively: true)!
+        }
+        else {
+            _drillBitHolder = twinImgScene.rootNode.childNode(withName: "instance_0", recursively: true)!
+        }
         shipNode.position = SCNVector3(_twinTranslationlocation.x, _twinTranslationlocation.y, _twinTranslationlocation.z)
         scnDigitalTwin.scene.rootNode.addChildNode(shipNode)
         _ParentNodeForTextNode = scnDigitalTwin.scene.rootNode
