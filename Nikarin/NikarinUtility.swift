@@ -166,7 +166,7 @@ class NikarinUtility {
         var strResponse : String = ""
         let anSem = DispatchSemaphore.init(value: 0)
         
-        if (anAccessURL == nil || anAccessURL.isEmpty) {
+        if (anAccessURL == "" || anAccessURL.isEmpty) {
             return strResponse
         }
         
@@ -197,7 +197,7 @@ class NikarinUtility {
         })
         anDataTsk.resume()
         if bSync == true {
-            anSem.wait(timeout: .distantFuture)
+            _ = anSem.wait(timeout: .distantFuture)
         }
         //print("And I got this reponse : \(strResponse))")
         return strResponse
@@ -209,7 +209,7 @@ class NikarinUtility {
         var strResponse : String = ""
         let anSem = DispatchSemaphore.init(value: 0)
         
-        if (anAccessURL == nil || anAccessURL.isEmpty) {
+        if (anAccessURL == "" || anAccessURL.isEmpty) {
             return strResponse
         }
         
@@ -246,7 +246,7 @@ class NikarinUtility {
         })
         anDataTsk.resume()
         if bSync == true {
-            anSem.wait(timeout: .distantFuture)
+            _ = anSem.wait(timeout: .distantFuture)
         }
         //print("POST I got this reponse : \(strResponse))")
         return strResponse
