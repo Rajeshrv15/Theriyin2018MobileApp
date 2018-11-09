@@ -101,6 +101,7 @@ class ARScenekitViewController: UIViewController, ARSCNViewDelegate {
                 print("animation ended - TriggerBPMN")
             }
         })
+        let sAlarmClearStatus : String = oNikarinUtility.GetDeviceMetricsFromServer(anAccessURL: oNikarinUtility.oAlarmClearURL, anUserName: "Administrator", anPassword: "manage", bSync: true)
         let sBPMSURL : String = "http://10.60.5.238:5555/invoke/Service/CallRepairBPMS?DeviceID=2323456&DeviceName=Drill&Email=\(oNikarinUtility.oEmailIds)&EmailBody=Send Technician for the service"
         let strBPMSResDict = oNikarinUtility.GetDeviceMetricsFromServer(anAccessURL: sBPMSURL, anUserName: "Administrator", anPassword: "manage", bSync: true)
         ShowProgressMessage(anuserHUDmessage: "Process triggered.", anTimeInterval: TimeInterval(5))

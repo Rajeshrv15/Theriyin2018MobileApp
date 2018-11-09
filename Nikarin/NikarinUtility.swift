@@ -18,6 +18,7 @@ class NikarinUtility {
     public var oUsrName : String = ""
     public var oPass : String = ""
     public var oEmailIds : String = ""
+    public var oAlarmClearURL : String = ""
     
     //To read the connectivity details from QR code response
     func ReadConnectionDetails() {
@@ -33,6 +34,7 @@ class NikarinUtility {
                     oUsrName = ReadContentString(dictInput: myDictionary, dictKey: "UserName")
                     oPass = ReadContentString(dictInput: myDictionary, dictKey: "Password")
                     oEmailIds = ReadContentString(dictInput: myDictionary, dictKey: "MailIds")
+                    oAlarmClearURL = ReadContentString(dictInput: myDictionary, dictKey: "AlarmUrl")
                 }
             } catch let error as NSError {
                 print(error)
