@@ -203,6 +203,55 @@ class NikarinUtility {
         return strResponse
     }
     
+    //Send request for creating case in AgileApps
+    func PostDeviceMetricsFromServer(anAccessURL : String, anUserName: String, anPassword: String, anBodyContent: String, bSync: Bool) -> String {
+        let config = URLSessionConfiguration.default
+        var strResponse : String = ""
+        let anSem = DispatchSemaphore.init(value: 0)
+        
+        if (anAccessURL == nil || anAccessURL.isEmpty) {
+            return strResponse
+        }
+        
+        if (!anUserName.isEmpty && !anPassword.isEmpty) {
+            let userPasswordData = "\(anUserName):\(anPassword)".data(using: .utf8)
+            let base64EncodedCredential = userPasswordData!.base64EncodedString(options: Data.Base64EncodingOptions.init(rawValue: 0))
+            let authString = "Basic \(base64EncodedCredential)"
+            config.httpAdditionalHeaders = ["Authorization" : authString]
+        }
+        
+        //print("URL : " + anAccessURL)
+        let session = URLSession(configuration: config)
+        
+        let anUrl = URL(string: anAccessURL.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!)!
+        var anUrlRequest : URLRequest = URLRequest(url: anUrl)
+        var anResponse : String = ""
+        
+        anUrlRequest.httpMethod = "POST"
+        let bodyString : String = anBodyContent
+        let bodyData = bodyString.data(using: String.Encoding.utf8)
+        anUrlRequest.httpBody = bodyData
+        anUrlRequest.setValue("application/xml", forHTTPHeaderField: "Content-Type")
+        
+        let anDataTsk = session.dataTask(with: anUrlRequest as URLRequest, completionHandler: { (data, response, error) -> Void in
+            guard error == nil else {
+                print(error?.localizedDescription ?? "")
+                return
+            }
+            anResponse = String(data: data!, encoding: .utf8)!
+            strResponse = anResponse
+            if bSync == true {
+                anSem.signal()
+            }
+        })
+        anDataTsk.resume()
+        if bSync == true {
+            anSem.wait(timeout: .distantFuture)
+        }
+        //print("POST I got this reponse : \(strResponse))")
+        return strResponse
+    }
+    
     func GetParamSpriteNode(strParamType: String, Circle: SKShapeNode) -> String {
         var sRetString : String = strParamType
         if strParamType.range(of: "Temperature") != nil {

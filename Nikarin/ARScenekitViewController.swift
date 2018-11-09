@@ -101,9 +101,24 @@ class ARScenekitViewController: UIViewController, ARSCNViewDelegate {
                 print("animation ended - TriggerBPMN")
             }
         })
-        let sAlarmClearStatus : String = oNikarinUtility.GetDeviceMetricsFromServer(anAccessURL: oNikarinUtility.oAlarmClearURL, anUserName: "Administrator", anPassword: "manage", bSync: true)
-        let sBPMSURL : String = "http://10.60.5.238:5555/invoke/Service/CallRepairBPMS?DeviceID=2323456&DeviceName=Drill&Email=\(oNikarinUtility.oEmailIds)&EmailBody=Send Technician for the service"
-        let strBPMSResDict = oNikarinUtility.GetDeviceMetricsFromServer(anAccessURL: sBPMSURL, anUserName: "Administrator", anPassword: "manage", bSync: true)
+        
+        //AgileApp case creation
+        let oAgileAppsURL = "https://alfabet.agileappscloud.eu/networking/rest/"
+        let oAgileAppsUserName = "userNikarin"
+        let oAgileAppsPassword = "Theriyin18"
+        
+        let strLoginPost = "<platform><login><userName>userNikarin</userName><password>Theriyin18</password></login></platform>"
+        _ = oNikarinUtility.PostDeviceMetricsFromServer(anAccessURL: "\(oAgileAppsURL)login", anUserName: oAgileAppsUserName, anPassword: oAgileAppsPassword, anBodyContent: strLoginPost, bSync: true)
+        
+        let strBodyPost = "<platform><record><subject>Periodic Maintenance request</subject><description>Maintenance for the device \(oNikarinUtility.oDevID) created.</description><type>1</type><priority>4</priority><account>553862718</account><status>1</status><cases_usermaildids_1855260936>\(oNikarinUtility.oEmailIds)</cases_usermaildids_1855260936></record></platform>"
+        _ = oNikarinUtility.PostDeviceMetricsFromServer(anAccessURL: "\(oAgileAppsURL)record/cases", anUserName: oAgileAppsUserName, anPassword: oAgileAppsPassword, anBodyContent: strBodyPost, bSync: true)
+        
+        //Clear Alarm from Cumulocity if any 
+        let _ : String = oNikarinUtility.GetDeviceMetricsFromServer(anAccessURL: oNikarinUtility.oAlarmClearURL, anUserName: "Administrator", anPassword: "manage", bSync: true)
+        
+        /*let sBPMSURL : String = "http://10.60.5.238:5555/invoke/Service/CallRepairBPMS?DeviceID=2323456&DeviceName=Drill&Email=\(oNikarinUtility.oEmailIds)&EmailBody=Send Technician for the service"
+        let strBPMSResDict = oNikarinUtility.GetDeviceMetricsFromServer(anAccessURL: sBPMSURL, anUserName: "Administrator", anPassword: "manage", bSync: true)*/
+        
         ShowProgressMessage(anuserHUDmessage: "Process triggered.", anTimeInterval: TimeInterval(5))
     }
     
