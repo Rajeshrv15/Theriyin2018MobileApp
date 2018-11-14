@@ -209,7 +209,7 @@ class ViewControllerTwinLoad: UIViewController, ARSCNViewDelegate {
         }
         let EmitParamsRes = oNikarinUtility.ReadEmittedParams(anInputStr: DeviceMetrics)
         _sDisplayMetrics = EmitParamsRes.anDispMetric
-        _sDisplayMessage = EmitParamsRes.anDispMsg
+        //_sDisplayMessage = EmitParamsRes.anDispMsg
         //print("Metric received \(DisplayMetrics)")
         if (_sDisplayMetrics == "")
         {

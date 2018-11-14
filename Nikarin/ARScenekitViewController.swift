@@ -114,7 +114,7 @@ class ARScenekitViewController: UIViewController, ARSCNViewDelegate {
         _ = oNikarinUtility.PostDeviceMetricsFromServer(anAccessURL: "\(oAgileAppsURL)record/cases", anUserName: oAgileAppsUserName, anPassword: oAgileAppsPassword, anBodyContent: strBodyPost, bSync: true)
         
         //Clear Alarm from Cumulocity if any 
-        let _ : String = oNikarinUtility.GetDeviceMetricsFromServer(anAccessURL: oNikarinUtility.oAlarmClearURL, anUserName: "Administrator", anPassword: "manage", bSync: true)
+        /*let _ : String = oNikarinUtility.GetDeviceMetricsFromServer(anAccessURL: oNikarinUtility.oAlarmClearURL, anUserName: "Administrator", anPassword: "manage", bSync: true)*/
         
         /*let sBPMSURL : String = "http://10.60.5.238:5555/invoke/Service/CallRepairBPMS?DeviceID=2323456&DeviceName=Drill&Email=\(oNikarinUtility.oEmailIds)&EmailBody=Send Technician for the service"
         let strBPMSResDict = oNikarinUtility.GetDeviceMetricsFromServer(anAccessURL: sBPMSURL, anUserName: "Administrator", anPassword: "manage", bSync: true)*/
