@@ -164,11 +164,12 @@ class NikarinUtility {
     func GetDeviceMetricsFromServer(anAccessURL : String, anUserName: String, anPassword: String, bSync: Bool) -> String {
         let config = URLSessionConfiguration.default
         var strResponse : String = ""
-        let anSem = DispatchSemaphore.init(value: 0)
         
         if (anAccessURL == "" || anAccessURL.isEmpty) {
             return strResponse
         }
+        
+        let anSem = DispatchSemaphore.init(value: 0)
         
         if (!anUserName.isEmpty && !anPassword.isEmpty) {
             let userPasswordData = "\(anUserName):\(anPassword)".data(using: .utf8)
